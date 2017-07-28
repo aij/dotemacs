@@ -47,10 +47,11 @@
  '(js2-bounce-indent-p t)
  '(package-selected-packages
    (quote
-    (rjsx-mode psc-ide purescript-mode geiser editorconfig use-package smartparens rust-mode projectile math-symbol-lists magit json-mode js2-mode groovy-mode ensime auto-complete)))
+    (rainbow-delimiters rjsx-mode psc-ide purescript-mode geiser editorconfig use-package smartparens rust-mode projectile math-symbol-lists magit json-mode js2-mode groovy-mode ensime auto-complete)))
  '(safe-local-variable-values
    (quote
-    ((js-switch-indent-offset . 2)
+    ((groovy-indent-offset . 2)
+     (js-switch-indent-offset . 2)
      (js2-basic-offset . 2)
      (js-indent-level . 2)
      (scala-indent:use-javadoc-style . t)
@@ -68,7 +69,16 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 98 :width normal)))))
+ '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 98 :width normal))))
+ '(rainbow-delimiters-depth-1-face ((t (:foreground "red"))))
+ '(rainbow-delimiters-depth-2-face ((t (:foreground "orange"))))
+ '(rainbow-delimiters-depth-3-face ((t (:foreground "yellow"))))
+ '(rainbow-delimiters-depth-4-face ((t (:foreground "chartreuse"))))
+ '(rainbow-delimiters-depth-5-face ((t (:foreground "cyan"))))
+ '(rainbow-delimiters-depth-6-face ((t (:foreground "deep sky blue"))))
+ '(rainbow-delimiters-depth-7-face ((t (:foreground "purple"))))
+ '(rainbow-delimiters-depth-8-face ((t (:foreground "magenta1"))))
+ '(rainbow-delimiters-depth-9-face ((t (:foreground "hot pink")))))
 
 
 ;; 2-space indent for JS seems to be the norm for CCAP3.
@@ -164,3 +174,7 @@
   :config (projectile-global-mode t)
   :bind   (("s-f" . projectile-find-file)
            ("s-F" . projectile-grep)))
+
+(use-package rainbow-delimiters
+  :config
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
