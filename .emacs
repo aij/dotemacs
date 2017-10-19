@@ -1,38 +1,11 @@
 (require 'package)
-;(add-to-list 'package-archives
-;             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(setq
- use-package-always-ensure t
- package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                    ("org" . "http://orgmode.org/elpa/")
-                    ("melpa" . "http://melpa.org/packages/")
-                    ("melpa-stable" . "http://stable.melpa.org/packages/")))
-
+(setq package-archives nil) ; makes unpure packages archives unavailable
 (package-initialize)
 
-;(unless (package-installed-p 'scala-mode2)
-;  (package-refresh-contents) (package-install 'scala-mode2))
-
-(when (not package-archive-contents)
-  (package-refresh-contents)
-  (package-install 'use-package))
 (require 'use-package)
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
-(require 'ccap-purescript)
 
-;; Restart emacs and do `M-x package-install [RETURN] ensime [RETURN]`
-;; To keep up-to-date, do `M-x list-packages [RETURN] U x [RETURN]`
-
-;; If necessary, make sure "sbt" and "scala" are in the PATH environment
-;; (setenv "PATH" (concat "/path/to/sbt/bin:" (getenv "PATH")))
-;; (setenv "PATH" (concat "/path/to/scala/bin:" (getenv "PATH")))
-;;
-;; On Macs, it might be a safer bet to use exec-path instead of PATH, for instance:
-;; (setq exec-path (append exec-path '("/usr/local/bin")))
-
-;(require 'ensime)
-;(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -40,6 +13,8 @@
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(ensime-default-java-flags (quote ("-Xmx6g" "-XX:MaxMetaspaceSize=512m")))
+ '(ensime-startup-notification nil)
+ '(ensime-startup-snapshot-notification nil)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(js-indent-level 2)
@@ -79,16 +54,6 @@
  '(rainbow-delimiters-depth-7-face ((t (:foreground "purple"))))
  '(rainbow-delimiters-depth-8-face ((t (:foreground "magenta1"))))
  '(rainbow-delimiters-depth-9-face ((t (:foreground "hot pink")))))
-
-
-;; 2-space indent for JS seems to be the norm for CCAP3.
-;(setq js-indent-level 2)
-(setq css-indent-offset 2)
-;(setq java-indent-level 4)
-;(custom-set-variables
-; '(js2-basic-offset 2)
-; '(js2-bounce-indent-p t)
-; )
 
 ;;(add-to-list 'auto-mode-alist '("\\.js$" . js2-jsx-mode))
 ;;(add-to-list 'auto-mode-alist '("\\.jsx$" . js2-jsx-mode))
@@ -160,13 +125,14 @@
 (add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
 (add-hook 'markdown-mode-hook 'turn-on-smartparens-strict-mode)
 
+(add-to-list 'load-path "~/.emacs.d/git/ensime-emacs")
 (use-package ensime
   ;;:pin melpa-stable
-  :ensure t
-  :pin melpa
+  ;;:ensure t
+  ;;:pin melpa
   )
-(setq ensime-startup-notification nil
-      ensime-startup-snapshot-notification nil)
+;;(setq ensime-startup-notification nil
+;;      ensime-startup-snapshot-notification nil)
 
 (use-package projectile
   :demand
@@ -178,3 +144,14 @@
 (use-package rainbow-delimiters
   :config
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+
+(use-package psc-ide
+  :init
+  (require 'ccap-purescript)
+  :config
+  (add-hook 'purescript-mode-hook
+    (lambda () ;; From https://github.com/epost/psc-ide-emacs
+      (psc-ide-mode)
+      (company-mode)
+      (flycheck-mode)
+      (turn-on-purescript-indentation))))
