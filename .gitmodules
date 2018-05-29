@@ -1,0 +1,7 @@
+[submodule ".emacs.d/git/ensime-emacs"]
+	path = .emacs.d/git/ensime-emacs
+	url = https://github.com/ensime/ensime-emacs
+	branch = 2.0
+[submodule ".emacs.d/git/flow-for-emacs"]
+	path = .emacs.d/git/flow-for-emacs
+	url = https://github.com/flowtype/flow-for-emacs

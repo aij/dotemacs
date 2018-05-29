@@ -12,7 +12,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
- '(ensime-default-java-flags (quote ("-Xmx6g" "-XX:MaxMetaspaceSize=512m")))
+ '(ensime-default-java-flags
+   (quote
+    ("-Xmx6g" "-XX:MaxMetaspaceSize=512m" "-javaagent:/home/aij/jmx_exporter/jmx_prometheus_javaagent-0.1.0.jar=1235:/home/aij/jmx_exporter/config.yaml ")))
  '(ensime-startup-notification nil)
  '(ensime-startup-snapshot-notification nil)
  '(indent-tabs-mode nil)
@@ -20,12 +22,14 @@
  '(js-indent-level 2)
  '(js2-basic-offset 2)
  '(js2-bounce-indent-p t)
+ '(js2-strict-trailing-comma-warning nil)
  '(package-selected-packages
    (quote
     (rainbow-delimiters rjsx-mode psc-ide purescript-mode geiser editorconfig use-package smartparens rust-mode projectile math-symbol-lists magit json-mode js2-mode groovy-mode ensime auto-complete)))
  '(safe-local-variable-values
    (quote
-    ((groovy-indent-offset . 2)
+    ((js2-strict-trailing-comma-warning . f)
+     (groovy-indent-offset . 2)
      (js-switch-indent-offset . 2)
      (js2-basic-offset . 2)
      (js-indent-level . 2)
@@ -134,6 +138,15 @@
 ;;(setq ensime-startup-notification nil
 ;;      ensime-startup-snapshot-notification nil)
 
+(use-package dumb-jump
+  :bind (("M-g o" . dumb-jump-go-other-window)
+         ("M-g j" . dumb-jump-go)
+         ("M-g i" . dumb-jump-go-prompt)
+         ("M-g x" . dumb-jump-go-prefer-external)
+         ("M-g z" . dumb-jump-go-prefer-external-other-window))
+  ;:config (setq dumb-jump-selector 'ivy) ;; (setq dumb-jump-selector 'helm)
+  )
+
 (use-package projectile
   :demand
   ;; :init   (setq projectile-use-git-grep t)
@@ -155,3 +168,16 @@
       (company-mode)
       (flycheck-mode)
       (turn-on-purescript-indentation))))
+
+(use-package web-mode
+  :config
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-attr-indent-offset 2)
+  (setq web-mode-content-types-alist
+        '(("jsx" . "\\.js\\'")
+          ("jsx" . "\\.jsx\\'"))
+        ))
+
+(load-file "~/.emacs.d/git/flow-for-emacs/flow.el")
