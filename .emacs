@@ -12,9 +12,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
- '(ensime-default-java-flags
-   (quote
-    ("-Xmx6g" "-XX:MaxMetaspaceSize=512m" "-javaagent:/home/aij/jmx_exporter/jmx_prometheus_javaagent-0.1.0.jar=1235:/home/aij/jmx_exporter/config.yaml ")))
+ ;;'(ensime-default-java-flags
+ ;;  (quote
+ ;;   ("-Xmx6g" "-XX:MaxMetaspaceSize=512m" "-javaagent:/home/aij/jmx_exporter/jmx_prometheus_javaagent-0.1.0.jar=1235:/home/aij/jmx_exporter/config.yaml ")))
+ '(ensime-default-java-flags (quote ("-Xmx6g" "-XX:MaxMetaspaceSize=512m")))
  '(ensime-startup-notification nil)
  '(ensime-startup-snapshot-notification nil)
  '(indent-tabs-mode nil)
@@ -180,4 +181,5 @@
           ("jsx" . "\\.jsx\\'"))
         ))
 
-(load-file "~/.emacs.d/git/flow-for-emacs/flow.el")
+(when (file-exists-p "~/.emacs.d/git/flow-for-emacs/flow.el")
+  (load "~/.emacs.d/git/flow-for-emacs/flow.el"))
