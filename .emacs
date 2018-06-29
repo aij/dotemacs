@@ -182,5 +182,9 @@
           ("jsx" . "\\.jsx\\'"))
         ))
 
-(when (file-exists-p "~/.emacs.d/git/flow-for-emacs/flow.el")
-  (load "~/.emacs.d/git/flow-for-emacs/flow.el"))
+(use-package flow-minor-mode
+  :config
+  (add-hook 'js2-mode-hook 'flow-minor-enable-automatically)
+  (add-hook 'web-mode-hook 'flow-minor-mode))
+;;(when (file-exists-p "~/.emacs.d/git/flow-for-emacs/flow.el")
+;;  (load "~/.emacs.d/git/flow-for-emacs/flow.el"))
