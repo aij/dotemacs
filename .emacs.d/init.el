@@ -185,6 +185,21 @@
 (use-package flow-minor-mode
   :config
   (add-hook 'js2-mode-hook 'flow-minor-enable-automatically)
-  (add-hook 'web-mode-hook 'flow-minor-mode))
+  (add-hook 'web-mode-hook 'flow-minor-mode)
+  (require 'flycheck-flow)
+  (with-eval-after-load 'flycheck
+    (flycheck-add-mode 'javascript-flow 'flow-minor-mode)
+    (flycheck-add-mode 'javascript-eslint 'flow-minor-mode)
+    (flycheck-add-next-checker 'javascript-flow 'javascript-eslint)))
 ;;(when (file-exists-p "~/.emacs.d/git/flow-for-emacs/flow.el")
 ;;  (load "~/.emacs.d/git/flow-for-emacs/flow.el"))
+
+(use-package prettier-js
+  ;; :init (add-hook 'web-mode-hook 'prettier-js-mode)
+  :config
+  (setq prettier-js-args '("--insert-pragma")))
+  ;;(setq prettier-js-args '("--insert-pragma" "--require-pragma")))
+
+(use-package highlight-indent-guides
+  :init
+  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
