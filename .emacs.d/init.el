@@ -203,3 +203,8 @@
 (use-package highlight-indent-guides
   :init
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
+
+(use-package direnv
+ :config
+ (direnv-mode)
+ (add-to-list 'direnv-non-file-modes 'compilation-mode) )
