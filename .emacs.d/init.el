@@ -196,10 +196,10 @@
 ;;  (load "~/.emacs.d/git/flow-for-emacs/flow.el"))
 
 (use-package prettier-js
-  ;; :init (add-hook 'web-mode-hook 'prettier-js-mode)
+  :init (add-hook 'web-mode-hook 'prettier-js-mode)
   :config
-  (setq prettier-js-args '("--insert-pragma")))
-  ;;(setq prettier-js-args '("--insert-pragma" "--require-pragma")))
+  ;;(setq prettier-js-args '("--insert-pragma")))
+  (setq prettier-js-args '("--insert-pragma" "--require-pragma")))
 
 (use-package highlight-indent-guides
   :init
