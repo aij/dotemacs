@@ -130,14 +130,12 @@
 (add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
 (add-hook 'markdown-mode-hook 'turn-on-smartparens-strict-mode)
 
-(add-to-list 'load-path "~/.emacs.d/git/ensime-emacs")
-(use-package ensime
-  ;;:pin melpa-stable
-  ;;:ensure t
-  ;;:pin melpa
-  )
-;;(setq ensime-startup-notification nil
-;;      ensime-startup-snapshot-notification nil)
+;; (add-to-list 'load-path "~/.emacs.d/git/ensime-emacs")
+;; (use-package ensime
+;;   ;;:pin melpa-stable
+;;   ;;:ensure t
+;;   ;;:pin melpa
+;;   )
 
 (use-package dumb-jump
   :bind (("M-g o" . dumb-jump-go-other-window)
