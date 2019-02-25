@@ -5,3 +5,6 @@
 [submodule ".emacs.d/git/flow-for-emacs"]
 	path = .emacs.d/git/flow-for-emacs
 	url = https://github.com/flowtype/flow-for-emacs
+[submodule ".emacs.d/git/lsp-scala"]
+	path = .emacs.d/git/lsp-scala
+	url = https://github.com/rossabaker/lsp-scala.git
