@@ -109,7 +109,7 @@
 ;	  (local-set-key (kbd "C-x '") 'sbt-run-previous-command))
 
 (use-package smartparens
-  :diminish smartparens-mode
+  :delight smartparens-mode
   :config
   (require 'smartparens-config)
   (progn (show-smartparens-global-mode t))
@@ -148,6 +148,7 @@
 
 (use-package projectile
   :demand
+  :delight " P"
   ;; :init   (setq projectile-use-git-grep t)
   :config (projectile-global-mode t)
   :bind   (("C-c p" . projectile-command-map)
@@ -200,6 +201,7 @@
   (setq prettier-js-args '("--insert-pragma" "--require-pragma")))
 
 (use-package highlight-indent-guides
+  :delight
   :init
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
 
