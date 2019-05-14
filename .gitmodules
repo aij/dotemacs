@@ -1,10 +1,10 @@
-[submodule ".emacs.d/git/ensime-emacs"]
-	path = .emacs.d/git/ensime-emacs
+[submodule "git/ensime-emacs"]
+	path = git/ensime-emacs
 	url = https://github.com/ensime/ensime-emacs
 	branch = 2.0
-[submodule ".emacs.d/git/flow-for-emacs"]
-	path = .emacs.d/git/flow-for-emacs
+[submodule "git/flow-for-emacs"]
+	path = git/flow-for-emacs
 	url = https://github.com/flowtype/flow-for-emacs
-[submodule ".emacs.d/git/lsp-scala"]
-	path = .emacs.d/git/lsp-scala
+[submodule "git/lsp-scala"]
+	path = git/lsp-scala
 	url = https://github.com/rossabaker/lsp-scala.git
