@@ -137,6 +137,11 @@
 ;;   ;;:pin melpa
 ;;   )
 
+(use-package god-mode
+  :bind (("<escape>" . god-mode-all)
+         :map god-local-mode-map
+         ("." . repeat)))
+
 (use-package dumb-jump
   :bind (("M-g o" . dumb-jump-go-other-window)
          ("M-g j" . dumb-jump-go)
