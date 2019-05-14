@@ -168,7 +168,8 @@
       (psc-ide-mode)
       (company-mode)
       (flycheck-mode)
-      (turn-on-purescript-indentation))))
+      (turn-on-purescript-indentation)))
+  :bind (("C-<tab>" . company-complete)))
 
 (use-package web-mode
   :mode "\\.js\\'"
