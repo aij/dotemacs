@@ -253,3 +253,7 @@
   :demand t
   ;; Optional - enable lsp-scala automatically in scala files
   :hook (scala-mode . lsp))
+
+(use-package dhall-mode
+  :config
+  (setq-default dhall-format-arguments '("--ascii")))
