@@ -1,19 +1,12 @@
-[submodule "git/ensime-emacs"]
-	path = git/ensime-emacs
-	url = https://github.com/ensime/ensime-emacs
-	branch = 2.0
-[submodule "git/flow-for-emacs"]
-	path = git/flow-for-emacs
-	url = https://github.com/flowtype/flow-for-emacs
-[borg]
-	pushDefault = locutus
-	collective = emacsg
 [submodule "auto-compile"]
 	path = lib/auto-compile
 	url = git@github.com:emacscollective/auto-compile.git
 [submodule "borg"]
 	path = lib/borg
 	url = git@github.com:emacscollective/borg.git
+[borg]
+	pushDefault = locutus
+	collective = emacsg
 [submodule "closql"]
 	path = lib/closql
 	url = git@github.com:emacscollective/closql.git
@@ -37,13 +30,29 @@
 [submodule "git-modes"]
 	path = lib/git-modes
 	url = git@github.com:magit/git-modes.git
+[submodule "git/ensime-emacs"]
+	path = git/ensime-emacs
+	url = https://github.com/ensime/ensime-emacs
+	branch = 2.0
+[submodule "git/flow-for-emacs"]
+	path = git/flow-for-emacs
+	url = https://github.com/flowtype/flow-for-emacs
 [submodule "graphql"]
 	path = lib/graphql
 	url = git@github.com:vermiculus/graphql.el.git
+[submodule "ht"]
+	path = lib/ht
+	url = git@github.com:Wilfred/ht.el.git
 [submodule "libgit"]
 	path = lib/libgit
 	url = git@github.com:magit/libegit2.git
 	build-step = make
+[submodule "lsp-mode"]
+	path = lib/lsp-mode
+	url = git@github.com:emacs-lsp/lsp-mode.git
+[submodule "lsp-ui"]
+	path = lib/lsp-ui
+	url = git@github.com:emacs-lsp/lsp-ui.git
 [submodule "magit"]
 	path = lib/magit
 	url = git@github.com:magit/magit.git
@@ -52,6 +61,9 @@
 [submodule "packed"]
 	path = lib/packed
 	url = git@github.com:emacscollective/packed.git
+[submodule "spinner"]
+	path = lib/spinner
+	url = git@github.com:Malabarba/spinner.el.git
 [submodule "transient"]
 	path = lib/transient
 	url = git@github.com:magit/transient.git
@@ -65,3 +77,6 @@
 [submodule "with-editor"]
 	path = lib/with-editor
 	url = git@github.com:magit/with-editor.git
+[submodule "yasnippet"]
+	path = lib/yasnippet
+	url = git@github.com:joaotavora/yasnippet.git

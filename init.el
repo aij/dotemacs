@@ -80,6 +80,9 @@
   :when (version< "25" emacs-version)
   :config (global-eldoc-mode))
 
+(use-package lsp-ui
+  :hook (lsp-mode . lsp-ui-mode))
+
 (use-package help
   :defer t
   :config (temp-buffer-resize-mode))
@@ -142,6 +145,8 @@
   (add-to-list 'tramp-default-proxies-alist '("localhost" nil nil))
   (add-to-list 'tramp-default-proxies-alist
                (list (regexp-quote (system-name)) nil nil)))
+
+(use-package yasnippet)
 
 (progn ;     startup
   (message "Loading %s...done (%.3fs)" user-init-file
