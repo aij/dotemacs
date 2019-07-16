@@ -247,13 +247,6 @@
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode))
 
-(use-package lsp-scala
-  :load-path "~/.emacs.d/git/lsp-scala"
-  :after scala-mode
-  :demand t
-  ;; Optional - enable lsp-scala automatically in scala files
-  :hook (scala-mode . lsp))
-
 (use-package dhall-mode
   :config
   (setq-default dhall-format-arguments '("--ascii")))

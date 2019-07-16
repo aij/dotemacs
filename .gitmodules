@@ -5,9 +5,6 @@
 [submodule "git/flow-for-emacs"]
 	path = git/flow-for-emacs
 	url = https://github.com/flowtype/flow-for-emacs
-[submodule "git/lsp-scala"]
-	path = git/lsp-scala
-	url = https://github.com/rossabaker/lsp-scala.git
 [borg]
 	pushDefault = locutus
 	collective = emacsg
