@@ -41,10 +41,10 @@
   (setq auto-compile-toggle-deletes-nonlib-dest   t)
   (setq auto-compile-update-autoloads             t))
 
+(use-package no-littering)
+
 (use-package epkg
-  :defer t
-  :init (setq epkg-repository
-              (expand-file-name "var/epkgs/" user-emacs-directory)))
+  :defer t)
 
 (use-package custom
   :no-require t
@@ -63,6 +63,15 @@
 
 ;;; Long tail
 
+(use-package autorevert
+  :config
+  (setq auto-revert-verbose nil))
+
+(use-package copyright
+  :defer t
+  :config
+  (add-hook 'before-save-hook 'copyright-update))
+
 (use-package dash
   :config (dash-enable-font-lock))
 
@@ -72,20 +81,54 @@
   (global-diff-hl-mode)
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh t))
 
+(use-package diff-hl-flydiff
+  :config (diff-hl-flydiff-mode))
+
+(use-package dim-autoload
+  :config (global-dim-autoload-cookies-mode))
+
 (use-package dired
   :defer t
   :config (setq dired-listing-switches "-alh"))
+
+(use-package ediff
+  :defer t
+  :config (setq ediff-window-setup-function 'ediff-setup-windows-plain))
 
 (use-package eldoc
   :when (version< "25" emacs-version)
   :config (global-eldoc-mode))
 
-(use-package lsp-ui
-  :hook (lsp-mode . lsp-ui-mode))
+(use-package fill-column-indicator
+  :config
+  (setq fci-rule-width 2)
+  (setq fci-rule-column 80)
+  (add-hook 'emacs-lisp-mode-hook 'fci-mode)
+  (add-hook 'git-commit-setup-hook 'fci-mode))
+
+(use-package forge
+  :after magit)
+
+(use-package git-commit
+  :defer t
+  :config
+  (remove-hook 'git-commit-setup-hook 'git-commit-setup-changelog-support)
+  (remove-hook 'git-commit-setup-hook 'git-commit-propertize-diff)
+  (remove-hook 'git-commit-setup-hook 'with-editor-usage-message)
+  (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell t))
+
+(use-package git-rebase
+  :defer t
+  :config
+  (setq git-rebase-confirm-cancel nil)
+  (setq git-rebase-show-instructions nil))
 
 (use-package help
   :defer t
   :config (temp-buffer-resize-mode))
+
+(use-package hl-todo
+  :config (global-hl-todo-mode))
 
 (progn ;    `isearch'
   (setq isearch-allow-scroll t))
@@ -98,22 +141,100 @@
     (setq indent-tabs-mode nil))
   (add-hook 'lisp-interaction-mode-hook #'indent-spaces-mode))
 
+(use-package lsp-ui
+  :hook (lsp-mode . lsp-ui-mode))
+
 (use-package magit
   :defer t
+  :functions (magit-add-section-hook)
+  :init
+  ;;
+  ;; Margin settings
+  (setq magit-log-margin '(nil age magit-log-margin-width nil 15))
+  (setq magit-refs-margin-for-tags t)
+  ;;
+  ;; Key bindings
   :bind (("C-x g"   . magit-status)
          ("C-x M-g" . magit-dispatch))
   :config
+  (setq magit-pull-or-fetch t)
+  (define-key magit-mode-map "f" 'magit-pull)
+  (define-key magit-mode-map "F" nil)
+  (define-key magit-file-mode-map (kbd "C-c g") 'magit-file-dispatch)
+  ;;
+  ;; Disable safety nets
+  (setq magit-commit-squash-confirm nil)
+  (setq magit-save-repository-buffers 'dontask)
+  (setf (nth 2 (assq 'magit-stash-pop  magit-dwim-selection)) t)
+  (setf (nth 2 (assq 'magit-stash-drop magit-dwim-selection)) t)
+  (add-to-list 'magit-no-confirm 'safe-with-wip t)
+  (add-to-list 'magit-no-confirm 'rename t)
+  (add-to-list 'magit-no-confirm 'resurrect t)
+  (add-to-list 'magit-no-confirm 'trash t)
+  ;;
+  ;; Window managment
+  (setq magit-display-buffer-function
+        'magit-display-buffer-fullframe-status-topleft-v1)
+  (add-hook 'magit-section-movement-hook 'magit-status-maybe-update-revision-buffer)
+  (add-hook 'magit-section-movement-hook 'magit-status-maybe-update-blob-buffer)
+  (add-hook 'magit-section-movement-hook 'magit-log-maybe-update-blob-buffer)
+  ;;
+  ;; Global settings
+  (add-hook 'after-save-hook 'magit-after-save-refresh-status t)
+  (add-to-list 'magit-repository-directories (cons "~/.emacs.d/" 0))
+  (add-to-list 'magit-repository-directories (cons "~/.emacs.d/lib/" 1))
+  ;;
+  ;; Commit settings
+  (setq magit-commit-extend-override-date nil)
+  (setq magit-commit-reword-override-date nil)
+  ;;
+  ;; Branch settings
+  (setq magit-branch-adjust-remote-upstream-alist
+        '(("master" "master" "next" "maint")))
+  ;;
+  ;; Push settings
+  (setq magit-push-current-set-remote-if-missing 'default)
+  ;;
+  ;; Status buffer settings
+  (add-to-list 'magit-section-initial-visibility-alist
+               '(magit-status-initial-section . show))
+  (setq magit-status-initial-section
+        '(((unpulled . "..@{upstream}") (status))
+          ((unpushed . "@{upstream}..") (status))))
   (magit-add-section-hook 'magit-status-sections-hook
                           'magit-insert-modules
                           'magit-insert-stashes
-                          'append))
+                          'append)
+  (magit-add-section-hook 'magit-status-sections-hook
+                          'magit-insert-worktrees
+                          'magit-insert-modules
+                          'append)
+  ;;
+  ;; Diff buffer settings
+  (setq magit-diff-refine-hunk 'all)
+  ;;
+  ;; Revision buffer settings
+  (setq magit-revision-show-gravatars t))
+
+(use-package magit-wip
+  :after magit
+  :config (magit-wip-mode))
 
 (use-package man
   :defer t
   :config (setq Man-width 80))
 
+(use-package mode-line-debug
+  :config (mode-line-debug-mode))
+
+(use-package morlock
+  :config (global-morlock-mode))
+
 (use-package paren
   :config (show-paren-mode))
+
+(use-package paren-face
+  :config (global-paren-face-mode))
 
 (use-package prog-mode
   :config (global-prettify-symbols-mode)
@@ -132,8 +253,24 @@
   :when (version< "25" emacs-version)
   :config (save-place-mode))
 
+(use-package shell
+  :defer t
+  :config
+  (require 'with-editor)
+  (add-hook 'shell-mode-hook 'with-editor-export-editor))
+
 (use-package simple
   :config (column-number-mode))
+
+(use-package smerge-mode
+  :defer t
+  :config (setq smerge-refine-ignore-whitespace nil))
+
+(use-package term
+  :defer t
+  :config
+  (require 'with-editor)
+  (add-hook 'term-exec-hook 'with-editor-export-editor))
 
 (progn ;    `text-mode'
   (add-hook 'text-mode-hook #'indicate-buffer-boundaries-left))
@@ -145,6 +282,11 @@
   (add-to-list 'tramp-default-proxies-alist '("localhost" nil nil))
   (add-to-list 'tramp-default-proxies-alist
                (list (regexp-quote (system-name)) nil nil)))
+
+(use-package undo-tree
+  :config
+  (global-undo-tree-mode)
+  (setq undo-tree-mode-lighter ""))
 
 (use-package yasnippet)
 
