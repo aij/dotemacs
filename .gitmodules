@@ -58,6 +58,9 @@
 	url = git@github.com:magit/magit.git
 	recursive-byte-compile = true
 	info-path = Documentation
+[submodule "math-symbol-lists"]
+	path = lib/math-symbol-lists
+	url = git@github.com:vspinu/math-symbol-lists.git
 [submodule "packed"]
 	path = lib/packed
 	url = git@github.com:emacscollective/packed.git
