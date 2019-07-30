@@ -33,6 +33,15 @@
 [submodule "fill-column-indicator"]
 	path = lib/fill-column-indicator
 	url = git@github.com:alpaker/Fill-Column-Indicator.git
+[submodule "flow-minor-mode"]
+	path = lib/flow-minor-mode
+	url = git@github.com:an-sh/flow-minor-mode.git
+[submodule "flycheck"]
+	path = lib/flycheck
+	url = git@github.com:flycheck/flycheck.git
+[submodule "flycheck-flow"]
+	path = lib/flycheck-flow
+	url = git@github.com:lbolla/emacs-flycheck-flow.git
 [submodule "forge"]
 	path = lib/forge
 	url = git@github.com:magit/forge.git
@@ -116,6 +125,9 @@
 [submodule "paren-face"]
 	path = lib/paren-face
 	url = git@github.com:tarsius/paren-face.git
+[submodule "prettier-js"]
+	path = lib/prettier-js
+	url = git@github.com:prettier/prettier-emacs.git
 [submodule "projectile"]
 	path = lib/projectile
 	url = git@github.com:bbatsov/projectile.git
