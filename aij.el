@@ -108,25 +108,6 @@
 ;(add-hook 'scala-mode-hook
 ;	  (local-set-key (kbd "C-x '") 'sbt-run-previous-command))
 
-(use-package smartparens
-  :delight smartparens-mode
-  :config
-  (require 'smartparens-config)
-  (progn (show-smartparens-global-mode t))
-  (sp-use-smartparens-bindings)
-  (sp-pair "(" ")" :wrap "C-c (")
-  (sp-pair "[" "]" :wrap "C-c [")
-  (sp-pair "{" "}" :wrap "C-c {")
-  (bind-key "M-[" 'sp-backward-unwrap-sexp smartparens-mode-map)
-  (bind-key "M-]"  'sp-unwrap-sexp smartparens-mode-map)
-  ;; WORKAROUND https://github.com/Fuco1/smartparens/issues/543
-  ;;(bind-key "C-<left>" nil smartparens-mode-map)
-  ;;(bind-key "C-<right>" nil smartparens-mode-map)
-
-  ;;(bind-key "s-<delete>" 'sp-kill-sexp smartparens-mode-map)
-  ;;(bind-key "s-<backspace>" 'sp-backward-kill-sexp smartparens-mode-map)
-  )
-
 (add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
 (add-hook 'markdown-mode-hook 'turn-on-smartparens-strict-mode)
 
@@ -150,10 +131,6 @@
          ("M-g z" . dumb-jump-go-prefer-external-other-window))
   ;:config (setq dumb-jump-selector 'ivy) ;; (setq dumb-jump-selector 'helm)
   )
-
-(use-package rainbow-delimiters
-  :config
-  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
 (use-package psc-ide
   :init

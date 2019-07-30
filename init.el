@@ -250,6 +250,10 @@
            ("s-f" . projectile-find-file)
            ("s-F" . projectile-grep)))
 
+(use-package rainbow-delimiters
+  :config
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+
 (use-package recentf
   :demand t
   :config (add-to-list 'recentf-exclude "^/\\(?:ssh\\|su\\|sudo\\)?:"))
@@ -269,6 +273,18 @@
 
 (use-package simple
   :config (column-number-mode))
+
+(use-package smartparens
+  :delight smartparens-mode
+  :config
+  (require 'smartparens-config)
+  (progn (show-smartparens-global-mode t))
+  (sp-use-smartparens-bindings)
+  (sp-pair "(" ")" :wrap "C-c (")
+  (sp-pair "[" "]" :wrap "C-c [")
+  (sp-pair "{" "}" :wrap "C-c {")
+  (bind-key "M-[" 'sp-backward-unwrap-sexp smartparens-mode-map)
+  (bind-key "M-]"  'sp-unwrap-sexp smartparens-mode-map))
 
 (use-package smerge-mode
   :defer t
