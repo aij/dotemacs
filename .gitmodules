@@ -146,6 +146,9 @@
 [submodule "psc-ide"]
 	path = lib/psc-ide
 	url = git@github.com:purescript-emacs/psc-ide-emacs.git
+[submodule "purescript-mode"]
+	path = lib/purescript-mode
+	url = git@github.com:purescript-emacs/purescript-mode.git
 [submodule "rainbow-delimiters"]
 	path = lib/rainbow-delimiters
 	url = git@github.com:Fanael/rainbow-delimiters.git
