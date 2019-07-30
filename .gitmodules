@@ -65,6 +65,9 @@
 [submodule "git/flow-for-emacs"]
 	path = git/flow-for-emacs
 	url = https://github.com/flowtype/flow-for-emacs
+[submodule "god-mode"]
+	path = lib/god-mode
+	url = git@github.com:chrisdone/god-mode.git
 [submodule "graphql"]
 	path = lib/graphql
 	url = git@github.com:vermiculus/graphql.el.git
