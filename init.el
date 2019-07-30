@@ -242,6 +242,14 @@
     (setq indicate-buffer-boundaries 'left))
   (add-hook 'prog-mode-hook #'indicate-buffer-boundaries-left))
 
+(use-package projectile
+  :demand
+  :delight " P"
+  :config (projectile-global-mode t)
+  :bind   (("C-c p" . projectile-command-map)
+           ("s-f" . projectile-find-file)
+           ("s-F" . projectile-grep)))
+
 (use-package recentf
   :demand t
   :config (add-to-list 'recentf-exclude "^/\\(?:ssh\\|su\\|sudo\\)?:"))

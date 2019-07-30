@@ -74,9 +74,6 @@
 	url = git@github.com:magit/magit.git
 	recursive-byte-compile = true
 	info-path = Documentation
-[submodule "math-symbol-lists"]
-	path = lib/math-symbol-lists
-	url = git@github.com:vspinu/math-symbol-lists.git
 [submodule "magit-imerge"]
 	path = lib/magit-imerge
 	url = git@github.com:magit/magit-imerge.git
@@ -86,6 +83,9 @@
 [submodule "markdown-mode"]
 	path = lib/markdown-mode
 	url = git@github.com:jrblevin/markdown-mode.git
+[submodule "math-symbol-lists"]
+	path = lib/math-symbol-lists
+	url = git@github.com:vspinu/math-symbol-lists.git
 [submodule "mode-line-debug"]
 	path = lib/mode-line-debug
 	url = git@github.com:tarsius/mode-line-debug.git
@@ -113,6 +113,9 @@
 [submodule "paren-face"]
 	path = lib/paren-face
 	url = git@github.com:tarsius/paren-face.git
+[submodule "projectile"]
+	path = lib/projectile
+	url = git@github.com:bbatsov/projectile.git
 [submodule "rainbow-mode"]
 	path = lib/rainbow-mode
 	url = git@github.com:emacsmirror/rainbow-mode.git

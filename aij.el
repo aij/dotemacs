@@ -151,15 +151,6 @@
   ;:config (setq dumb-jump-selector 'ivy) ;; (setq dumb-jump-selector 'helm)
   )
 
-(use-package projectile
-  :demand
-  :delight " P"
-  ;; :init   (setq projectile-use-git-grep t)
-  :config (projectile-global-mode t)
-  :bind   (("C-c p" . projectile-command-map)
-           ("s-f" . projectile-find-file)
-           ("s-F" . projectile-grep)))
-
 (use-package rainbow-delimiters
   :config
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
