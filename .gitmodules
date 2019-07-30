@@ -83,6 +83,12 @@
 [submodule "ht"]
 	path = lib/ht
 	url = git@github.com:Wilfred/ht.el.git
+[submodule "json-mode"]
+	path = lib/json-mode
+	url = git@github.com:joshwnj/json-mode.git
+[submodule "json-snatcher"]
+	path = lib/json-snatcher
+	url = git@github.com:Sterlingg/json-snatcher.git
 [submodule "libgit"]
 	path = lib/libgit
 	url = git@github.com:magit/libegit2.git
@@ -113,12 +119,18 @@
 [submodule "math-symbol-lists"]
 	path = lib/math-symbol-lists
 	url = git@github.com:vspinu/math-symbol-lists.git
+[submodule "mmm-mode"]
+	path = lib/mmm-mode
+	url = git@github.com:purcell/mmm-mode.git
 [submodule "mode-line-debug"]
 	path = lib/mode-line-debug
 	url = git@github.com:tarsius/mode-line-debug.git
 [submodule "morlock"]
 	path = lib/morlock
 	url = git@github.com:tarsius/morlock.git
+[submodule "nix-mode"]
+	path = lib/nix-mode
+	url = git@github.com:NixOS/nix-mode.git
 [submodule "no-littering"]
 	path = lib/no-littering
 	url = git@github.com:emacscollective/no-littering.git
