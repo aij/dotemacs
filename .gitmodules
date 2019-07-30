@@ -36,6 +36,9 @@
 [submodule "epkg"]
 	path = lib/epkg
 	url = git@github.com:emacscollective/epkg.git
+[submodule "f"]
+	path = lib/f
+	url = git@github.com:rejeep/f.el.git
 [submodule "fill-column-indicator"]
 	path = lib/fill-column-indicator
 	url = git@github.com:alpaker/Fill-Column-Indicator.git
@@ -161,6 +164,12 @@
 [submodule "s"]
 	path = lib/s
 	url = git@github.com:magnars/s.el.git
+[submodule "sbt-mode"]
+	path = lib/sbt-mode
+	url = git@github.com:ensime/emacs-sbt-mode.git
+[submodule "scala-mode"]
+	path = lib/scala-mode
+	url = git@github.com:ensime/emacs-scala-mode.git
 [submodule "smartparens"]
 	path = lib/smartparens
 	url = git@github.com:Fuco1/smartparens.git
