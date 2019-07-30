@@ -20,6 +20,9 @@
 [submodule "dim-autoload"]
 	path = lib/dim-autoload
 	url = git@github.com:tarsius/dim-autoload.git
+[submodule "direnv"]
+	path = lib/direnv
+	url = git@github.com:wbolster/emacs-direnv.git
 [submodule "emacsql"]
 	path = lib/emacsql
 	url = git@github.com:skeeto/emacsql.git
