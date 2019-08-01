@@ -74,6 +74,9 @@
 [submodule "graphql"]
 	path = lib/graphql
 	url = git@github.com:vermiculus/graphql.el.git
+[submodule "groovy-mode"]
+	path = lib/groovy-mode
+	url = git@github.com:Groovy-Emacs-Modes/groovy-emacs-modes.git
 [submodule "highlight-indent-guides"]
 	path = lib/highlight-indent-guides
 	url = git@github.com:DarthFennec/highlight-indent-guides.git
