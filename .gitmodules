@@ -86,6 +86,9 @@
 [submodule "ht"]
 	path = lib/ht
 	url = git@github.com:Wilfred/ht.el.git
+[submodule "ini-mode"]
+	path = lib/ini-mode
+	url = git@github.com:Lindydancer/ini-mode.git
 [submodule "js2-mode"]
 	path = lib/js2-mode
 	url = git@github.com:mooz/js2-mode.git
