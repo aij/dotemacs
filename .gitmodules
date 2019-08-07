@@ -143,6 +143,9 @@
 [submodule "no-littering"]
 	path = lib/no-littering
 	url = git@github.com:emacscollective/no-littering.git
+[submodule "notmuch"]
+	path = lib/notmuch
+	url = https://git.notmuchmail.org/git/notmuch
 [submodule "orgit"]
 	path = lib/orgit
 	url = git@github.com:magit/orgit.git

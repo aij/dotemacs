@@ -230,6 +230,8 @@
 (use-package morlock
   :config (global-morlock-mode))
 
+(use-package notmuch)
+
 (use-package paren
   :config (show-paren-mode))
 
