@@ -32,6 +32,9 @@
 [submodule "direnv"]
 	path = lib/direnv
 	url = git@github.com:wbolster/emacs-direnv.git
+[submodule "dumb-jump"]
+	path = lib/dumb-jump
+	url = git@github.com:jacktasia/dumb-jump.git
 [submodule "emacsql"]
 	path = lib/emacsql
 	url = git@github.com:skeeto/emacsql.git
@@ -170,6 +173,9 @@
 [submodule "paren-face"]
 	path = lib/paren-face
 	url = git@github.com:tarsius/paren-face.git
+[submodule "popup"]
+	path = lib/popup
+	url = git@github.com:auto-complete/popup-el.git
 [submodule "prettier-js"]
 	path = lib/prettier-js
 	url = git@github.com:prettier/prettier-emacs.git
