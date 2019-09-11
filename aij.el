@@ -72,7 +72,7 @@
 (setq visible-bell t)
 
 ;; Lets just get rid of trailing whitespace.
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+;(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; It's really nice to be able to open more files with emacsclient
 (server-mode)
