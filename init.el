@@ -260,6 +260,20 @@
   :demand t
   :config (add-to-list 'recentf-exclude "^/\\(?:ssh\\|su\\|sudo\\)?:"))
 
+(use-package rtags
+  :config
+  (require 'flycheck-rtags)
+  (rtags-enable-standard-keybindings c-mode-base-map "\C-cr")
+  ;; From https://github.com/Andersbakken/rtags/wiki/Usage
+  (setq rtags-autostart-diagnostics t)
+  (defun my-flycheck-rtags-setup ()
+    (flycheck-select-checker 'rtags)
+    (setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
+    (setq-local flycheck-check-syntax-automatically nil))
+  (add-hook 'c-mode-hook #'my-flycheck-rtags-setup)
+  (add-hook 'c++-mode-hook #'my-flycheck-rtags-setup)
+  (add-hook 'objc-mode-hook #'my-flycheck-rtags-setup))
+
 (use-package savehist
   :config (savehist-mode))
 
