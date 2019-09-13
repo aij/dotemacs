@@ -20,6 +20,9 @@
 	path = lib/dash
 	url = git@github.com:magnars/dash.el.git
 	no-makeinfo = dash-template.texi
+[submodule "delight"]
+	path = lib/delight
+	url = https://git.savannah.nongnu.org/git/delight.git
 [submodule "dhall-mode"]
 	path = lib/dhall-mode
 	url = git@github.com:psibi/dhall-mode.git
