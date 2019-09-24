@@ -1,112 +1,294 @@
-(require 'package)
-(setq package-archives nil) ; makes unpure packages archives unavailable
-(package-initialize)
+;;; init.el --- user-init-file                    -*- lexical-binding: t -*-
+;;; Early birds
+(progn ;     startup
+  (defvar before-user-init-time (current-time)
+    "Value of `current-time' when Emacs begins loading `user-init-file'.")
+  (message "Loading Emacs...done (%.3fs)"
+           (float-time (time-subtract before-user-init-time
+                                      before-init-time)))
+  (setq user-init-file (or load-file-name buffer-file-name))
+  (setq user-emacs-directory (file-name-directory user-init-file))
+  (message "Loading %s..." user-init-file)
+  (setq package-enable-at-startup nil)
+  ;; (package-initialize)
+  (setq inhibit-startup-buffer-menu t)
+  (setq inhibit-startup-screen t)
+  (setq inhibit-startup-echo-area-message "locutus")
+  (setq initial-buffer-choice t)
+  (setq initial-scratch-message "")
+  (setq load-prefer-newer t)
+  (scroll-bar-mode 0)
+  (tool-bar-mode 0)
+  (menu-bar-mode 0))
 
-(require 'use-package)
+(progn ;    `borg'
+  (add-to-list 'load-path (expand-file-name "lib/borg" user-emacs-directory))
+  (require  'borg)
+  (borg-initialize))
 
-(add-to-list 'load-path "~/.emacs.d/lisp")
+(progn ;    `use-package'
+  (require  'use-package)
+  (setq use-package-verbose t))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(column-number-mode t)
- ;;'(ensime-default-java-flags
- ;;  (quote
- ;;   ("-Xmx6g" "-XX:MaxMetaspaceSize=512m" "-javaagent:/home/aij/jmx_exporter/jmx_prometheus_javaagent-0.1.0.jar=1235:/home/aij/jmx_exporter/config.yaml ")))
- '(ensime-default-java-flags (quote ("-Xmx6g" "-XX:MaxMetaspaceSize=512m")))
- '(ensime-startup-notification nil)
- '(ensime-startup-snapshot-notification nil)
- '(indent-tabs-mode nil)
- '(inhibit-startup-screen t)
- '(js-indent-level 2)
- '(js2-basic-offset 2)
- '(js2-bounce-indent-p t)
- '(js2-strict-trailing-comma-warning nil)
- '(package-selected-packages
-   (quote
-    (rainbow-delimiters rjsx-mode psc-ide purescript-mode geiser editorconfig use-package smartparens rust-mode projectile math-symbol-lists magit json-mode js2-mode groovy-mode ensime auto-complete)))
- '(safe-local-variable-values
-   (quote
-    ((js2-strict-trailing-comma-warning . f)
-     (groovy-indent-offset . 2)
-     (js-switch-indent-offset . 2)
-     (js2-basic-offset . 2)
-     (js-indent-level . 2)
-     (scala-indent:use-javadoc-style . t)
-     (js2-bounce-indent-p . t)
-     (java-indent-level . 4)
-     (css-indent-offset . 2))))
- '(save-place t nil (saveplace))
- '(scroll-error-top-bottom t)
- '(sentence-end-double-space nil)
- '(show-paren-mode t)
- '(tool-bar-mode nil))
- ;;'(sbt:default-command "compile")
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 98 :width normal))))
- '(rainbow-delimiters-depth-1-face ((t (:foreground "red"))))
- '(rainbow-delimiters-depth-2-face ((t (:foreground "orange"))))
- '(rainbow-delimiters-depth-3-face ((t (:foreground "yellow"))))
- '(rainbow-delimiters-depth-4-face ((t (:foreground "chartreuse"))))
- '(rainbow-delimiters-depth-5-face ((t (:foreground "cyan"))))
- '(rainbow-delimiters-depth-6-face ((t (:foreground "deep sky blue"))))
- '(rainbow-delimiters-depth-7-face ((t (:foreground "purple"))))
- '(rainbow-delimiters-depth-8-face ((t (:foreground "magenta1"))))
- '(rainbow-delimiters-depth-9-face ((t (:foreground "hot pink")))))
+(use-package auto-compile
+  :demand t
+  :config
+  (auto-compile-on-load-mode)
+  (auto-compile-on-save-mode)
+  (setq auto-compile-display-buffer               nil)
+  (setq auto-compile-mode-line-counter            t)
+  (setq auto-compile-source-recreate-deletes-dest t)
+  (setq auto-compile-toggle-deletes-nonlib-dest   t)
+  (setq auto-compile-update-autoloads             t))
 
-;;(add-to-list 'auto-mode-alist '("\\.js$" . js2-jsx-mode))
-;;(add-to-list 'auto-mode-alist '("\\.jsx$" . js2-jsx-mode))
-;;(add-to-list 'auto-mode-alist '("\\.js$" . rjsx-mode))
+(use-package no-littering)
 
-(add-hook 'java-mode-hook
-          (lambda ()
-            (setq tab-width 4)))
+(use-package epkg
+  :defer t)
 
-;; Stop the beeping
-(setq visible-bell t)
+(use-package custom
+  :no-require t
+  :config
+  (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+  (when (file-exists-p custom-file)
+    (load custom-file)))
 
-;; Lets just get rid of trailing whitespace.
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(use-package server
+  :config (or (server-running-p) (server-mode)))
 
-;; It's really nice to be able to open more files with emacsclient
-(server-mode)
+(progn ;     startup
+  (message "Loading early birds...done (%.3fs)"
+           (float-time (time-subtract (current-time)
+                                      before-user-init-time))))
 
-;; I want \qe to type a QUESTIONED EQUAL TO
-; http://www.emacswiki.org/emacs/TeXInputMethod
-;(let ((quail-current-package (assoc "TeX" quail-package-alist)))
-;  (quail-define-rules ((append . t))
-;		      ("^\\qe" ≟)))
+;;; Long tail
 
-;; Emacs Scalaz Unicode input method
-;; https://github.com/folone/emacs-scalaz-unicode-input-method/
-;(add-to-list 'load-path "~/.emacs.d/git/emacs-scalaz-unicode-input-method")
-;(require 'scalaz-unicode-input-method)
-;(add-hook 'scala-mode-hook
-;  (lambda () (set-input-method "scalaz-unicode")))
+(use-package autorevert
+  :config
+  (setq auto-revert-verbose nil))
 
+(use-package copyright
+  :defer t
+  :config
+  (add-hook 'before-save-hook 'copyright-update))
 
-(require 'math-symbol-lists)
-(quail-define-package "math" "UTF-8" "Ω" t)
-;(quail-define-rules ; add whatever extra rules you want to define here...
-; ("\\qe"    ≟)
-; ("\\unrhd"   #X22B5))
-(mapc (lambda (x)
-        (if (cddr x)
-            (quail-defrule (cadr x) (car (cddr x)))))
-      (append math-symbol-list-basic math-symbol-list-extended))
+(use-package dash
+  :config (dash-enable-font-lock))
 
+(use-package diff-hl
+  :config
+  (setq diff-hl-draw-borders nil)
+  (global-diff-hl-mode)
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh t))
 
-(add-hook 'scala-mode-hook
-  (lambda () (set-input-method "math")))
+(use-package diff-hl-flydiff
+  :config (diff-hl-flydiff-mode))
 
-;(add-hook 'scala-mode-hook
-;	  (local-set-key (kbd "C-x '") 'sbt-run-previous-command))
+(use-package dim-autoload
+  :config (global-dim-autoload-cookies-mode))
+
+(use-package dired
+  :defer t
+  :config (setq dired-listing-switches "-alh"))
+
+(use-package ediff
+  :defer t
+  :config (setq ediff-window-setup-function 'ediff-setup-windows-plain))
+
+(use-package eldoc
+  :when (version< "25" emacs-version)
+  :config (global-eldoc-mode))
+
+(use-package fill-column-indicator
+  :config
+  (setq fci-rule-width 2)
+  (setq fci-rule-column 80)
+  (add-hook 'emacs-lisp-mode-hook 'fci-mode)
+  (add-hook 'git-commit-setup-hook 'fci-mode))
+
+(use-package forge
+  :after magit)
+
+(use-package git-commit
+  :defer t
+  :config
+  (remove-hook 'git-commit-setup-hook 'git-commit-setup-changelog-support)
+  (remove-hook 'git-commit-setup-hook 'git-commit-propertize-diff)
+  (remove-hook 'git-commit-setup-hook 'with-editor-usage-message)
+  (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell t))
+
+(use-package git-rebase
+  :defer t
+  :config
+  (setq git-rebase-confirm-cancel nil)
+  (setq git-rebase-show-instructions nil))
+
+(use-package help
+  :defer t
+  :config (temp-buffer-resize-mode))
+
+(use-package hl-todo
+  :config (global-hl-todo-mode))
+
+(progn ;    `isearch'
+  (setq isearch-allow-scroll t))
+
+(use-package lisp-mode
+  :config
+  (add-hook 'emacs-lisp-mode-hook 'outline-minor-mode)
+  (add-hook 'emacs-lisp-mode-hook 'reveal-mode)
+  (defun indent-spaces-mode ()
+    (setq indent-tabs-mode nil))
+  (add-hook 'lisp-interaction-mode-hook #'indent-spaces-mode))
+
+(use-package lsp-ui
+  :hook (lsp-mode . lsp-ui-mode))
+
+(use-package magit
+  :defer t
+  :functions (magit-add-section-hook)
+  :init
+  ;;
+  ;; Margin settings
+  (setq magit-log-margin '(nil age magit-log-margin-width nil 15))
+  (setq magit-refs-margin-for-tags t)
+  ;;
+  ;; Key bindings
+  :bind (("C-x g"   . magit-status)
+         ("C-x M-g" . magit-dispatch))
+  :config
+  (setq magit-pull-or-fetch t)
+  (define-key magit-mode-map "f" 'magit-pull)
+  (define-key magit-mode-map "F" nil)
+  (define-key magit-file-mode-map (kbd "C-c g") 'magit-file-dispatch)
+  ;;
+  ;; Disable safety nets
+  (setq magit-commit-squash-confirm nil)
+  (setq magit-save-repository-buffers 'dontask)
+  (setf (nth 2 (assq 'magit-stash-pop  magit-dwim-selection)) t)
+  (setf (nth 2 (assq 'magit-stash-drop magit-dwim-selection)) t)
+  (add-to-list 'magit-no-confirm 'safe-with-wip t)
+  (add-to-list 'magit-no-confirm 'rename t)
+  (add-to-list 'magit-no-confirm 'resurrect t)
+  (add-to-list 'magit-no-confirm 'trash t)
+  ;;
+  ;; Window managment
+  (setq magit-display-buffer-function
+        'magit-display-buffer-fullframe-status-topleft-v1)
+  (add-hook 'magit-section-movement-hook 'magit-status-maybe-update-revision-buffer)
+  (add-hook 'magit-section-movement-hook 'magit-status-maybe-update-blob-buffer)
+  (add-hook 'magit-section-movement-hook 'magit-log-maybe-update-blob-buffer)
+  ;;
+  ;; Global settings
+  (add-hook 'after-save-hook 'magit-after-save-refresh-status t)
+  (add-to-list 'magit-repository-directories (cons "~/.emacs.d/" 0))
+  (add-to-list 'magit-repository-directories (cons "~/.emacs.d/lib/" 1))
+  ;;
+  ;; Commit settings
+  (setq magit-commit-extend-override-date nil)
+  (setq magit-commit-reword-override-date nil)
+  ;;
+  ;; Branch settings
+  (setq magit-branch-adjust-remote-upstream-alist
+        '(("master" "master" "next" "maint")))
+  ;;
+  ;; Push settings
+  (setq magit-push-current-set-remote-if-missing 'default)
+  ;;
+  ;; Status buffer settings
+  (add-to-list 'magit-section-initial-visibility-alist
+               '(magit-status-initial-section . show))
+  (setq magit-status-initial-section
+        '(((unpulled . "..@{upstream}") (status))
+          ((unpushed . "@{upstream}..") (status))))
+  (magit-add-section-hook 'magit-status-sections-hook
+                          'magit-insert-modules
+                          'magit-insert-stashes
+                          'append)
+  (magit-add-section-hook 'magit-status-sections-hook
+                          'magit-insert-worktrees
+                          'magit-insert-modules
+                          'append)
+  ;;
+  ;; Diff buffer settings
+  (setq magit-diff-refine-hunk 'all)
+  ;;
+  ;; Revision buffer settings
+  (setq magit-revision-show-gravatars t))
+
+(use-package magit-wip
+  :after magit
+  :config (magit-wip-mode))
+
+(use-package man
+  :defer t
+  :config (setq Man-width 80))
+
+(use-package mode-line-debug
+  :config (mode-line-debug-mode))
+
+(use-package morlock
+  :config (global-morlock-mode))
+
+(use-package notmuch)
+
+(use-package paren
+  :config (show-paren-mode))
+
+(use-package paren-face
+  :config (global-paren-face-mode))
+
+(use-package prog-mode
+  :config (global-prettify-symbols-mode)
+  (defun indicate-buffer-boundaries-left ()
+    (setq indicate-buffer-boundaries 'left))
+  (add-hook 'prog-mode-hook #'indicate-buffer-boundaries-left))
+
+(use-package projectile
+  :demand
+  :delight " P"
+  :config (projectile-global-mode t)
+  :bind   (("C-c p" . projectile-command-map)
+           ("s-f" . projectile-find-file)
+           ("s-F" . projectile-grep)))
+
+(use-package rainbow-delimiters
+  :config
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+
+(use-package recentf
+  :demand t
+  :config (add-to-list 'recentf-exclude "^/\\(?:ssh\\|su\\|sudo\\)?:"))
+
+(use-package rtags
+  :config
+  (require 'flycheck-rtags)
+  (rtags-enable-standard-keybindings c-mode-base-map "\C-cr")
+  ;; From https://github.com/Andersbakken/rtags/wiki/Usage
+  (setq rtags-autostart-diagnostics t)
+  (defun my-flycheck-rtags-setup ()
+    (flycheck-select-checker 'rtags)
+    (setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
+    (setq-local flycheck-check-syntax-automatically nil))
+  (add-hook 'c-mode-hook #'my-flycheck-rtags-setup)
+  (add-hook 'c++-mode-hook #'my-flycheck-rtags-setup)
+  (add-hook 'objc-mode-hook #'my-flycheck-rtags-setup))
+
+(use-package savehist
+  :config (savehist-mode))
+
+(use-package saveplace
+  :when (version< "25" emacs-version)
+  :config (save-place-mode))
+
+(use-package shell
+  :defer t
+  :config
+  (require 'with-editor)
+  (add-hook 'shell-mode-hook 'with-editor-export-editor))
+
+(use-package simple
+  :config (column-number-mode))
 
 (use-package smartparens
   :delight smartparens-mode
@@ -118,142 +300,55 @@
   (sp-pair "[" "]" :wrap "C-c [")
   (sp-pair "{" "}" :wrap "C-c {")
   (bind-key "M-[" 'sp-backward-unwrap-sexp smartparens-mode-map)
-  (bind-key "M-]"  'sp-unwrap-sexp smartparens-mode-map)
-  ;; WORKAROUND https://github.com/Fuco1/smartparens/issues/543
-  ;;(bind-key "C-<left>" nil smartparens-mode-map)
-  ;;(bind-key "C-<right>" nil smartparens-mode-map)
+  (bind-key "M-]"  'sp-unwrap-sexp smartparens-mode-map))
 
-  ;;(bind-key "s-<delete>" 'sp-kill-sexp smartparens-mode-map)
-  ;;(bind-key "s-<backspace>" 'sp-backward-kill-sexp smartparens-mode-map)
-  )
+(use-package smerge-mode
+  :defer t
+  :config (setq smerge-refine-ignore-whitespace nil))
 
-(add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
-(add-hook 'markdown-mode-hook 'turn-on-smartparens-strict-mode)
-
-;; (add-to-list 'load-path "~/.emacs.d/git/ensime-emacs")
-;; (use-package ensime
-;;   ;;:pin melpa-stable
-;;   ;;:ensure t
-;;   ;;:pin melpa
-;;   )
-
-(use-package god-mode
-  :bind (("<escape>" . god-mode-all)
-         :map god-local-mode-map
-         ("." . repeat)))
-
-(use-package dumb-jump
-  :bind (("M-g o" . dumb-jump-go-other-window)
-         ("M-g j" . dumb-jump-go)
-         ("M-g i" . dumb-jump-go-prompt)
-         ("M-g x" . dumb-jump-go-prefer-external)
-         ("M-g z" . dumb-jump-go-prefer-external-other-window))
-  ;:config (setq dumb-jump-selector 'ivy) ;; (setq dumb-jump-selector 'helm)
-  )
-
-(use-package projectile
-  :demand
-  :delight " P"
-  ;; :init   (setq projectile-use-git-grep t)
-  :config (projectile-global-mode t)
-  :bind   (("C-c p" . projectile-command-map)
-           ("s-f" . projectile-find-file)
-           ("s-F" . projectile-grep)))
-
-(use-package rainbow-delimiters
+(use-package term
+  :defer t
   :config
-  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+  (require 'with-editor)
+  (add-hook 'term-exec-hook 'with-editor-export-editor))
 
-(use-package psc-ide
-  :init
-  (require 'ccap-purescript)
+(progn ;    `text-mode'
+  (add-hook 'text-mode-hook #'indicate-buffer-boundaries-left))
+
+(use-package tramp
+  :defer t
   :config
-  (add-hook 'purescript-mode-hook
-    (lambda () ;; From https://github.com/epost/psc-ide-emacs
-      (psc-ide-mode)
-      (company-mode)
-      (flycheck-mode)
-      (turn-on-purescript-indentation)))
-  :bind (("C-<tab>" . company-complete)))
+  (add-to-list 'tramp-default-proxies-alist '(nil "\\`root\\'" "/ssh:%h:"))
+  (add-to-list 'tramp-default-proxies-alist '("localhost" nil nil))
+  (add-to-list 'tramp-default-proxies-alist
+               (list (regexp-quote (system-name)) nil nil)))
 
-(use-package web-mode
-  :mode "\\.js\\'"
+(use-package undo-tree
   :config
-  (setq web-mode-markup-indent-offset 2)
-  (setq web-mode-css-indent-offset 2)
-  (setq web-mode-code-indent-offset 2)
-  (setq web-mode-attr-indent-offset 2)
-  (setq web-mode-content-types-alist
-        '(("jsx" . "\\.js\\'")
-          ("jsx" . "\\.jsx\\'"))
-        ))
+  (global-undo-tree-mode)
+  (setq undo-tree-mode-lighter ""))
 
-(use-package flow-minor-mode
-  :config
-  (add-hook 'js2-mode-hook 'flow-minor-enable-automatically)
-  (add-hook 'web-mode-hook 'flow-minor-mode)
-  (require 'flycheck-flow)
-  (with-eval-after-load 'flycheck
-    (flycheck-add-mode 'javascript-flow 'flow-minor-mode)
-    (flycheck-add-mode 'javascript-eslint 'flow-minor-mode)
-    (flycheck-add-next-checker 'javascript-flow 'javascript-eslint)))
-;;(when (file-exists-p "~/.emacs.d/git/flow-for-emacs/flow.el")
-;;  (load "~/.emacs.d/git/flow-for-emacs/flow.el"))
+(use-package yasnippet)
 
-(use-package prettier-js
-  :init (add-hook 'web-mode-hook 'prettier-js-mode)
-  :config
-  ;;(setq prettier-js-args '("--insert-pragma")))
-  (setq prettier-js-args '("--insert-pragma" "--require-pragma")))
+(progn ;     startup
+  (message "Loading %s...done (%.3fs)" user-init-file
+           (float-time (time-subtract (current-time)
+                                      before-user-init-time)))
+  (add-hook 'after-init-hook
+            (lambda ()
+              (message
+               "Loading %s...done (%.3fs) [after-init]" user-init-file
+               (float-time (time-subtract (current-time)
+                                          before-user-init-time))))
+            t))
 
-(use-package highlight-indent-guides
-  :delight
-  :init
-  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
+(progn ;     personalize
+  (let ((file (expand-file-name (concat (user-real-login-name) ".el")
+                                user-emacs-directory)))
+    (when (file-exists-p file)
+      (load file))))
 
-(use-package direnv
- :config
- (direnv-mode)
- (add-to-list 'direnv-non-file-modes 'compilation-mode) )
-
-
-;; Enable scala-mode and sbt-mode
-;(use-package scala-mode
-;  :mode "\\.s\\(cala\\|bt\\)$")
-
-(use-package sbt-mode
-  :commands sbt-start sbt-command
-  :config
-  ;; WORKAROUND: https://github.com/ensime/emacs-sbt-mode/issues/31
-  ;; allows using SPACE when in the minibuffer
-  (substitute-key-definition
-   'minibuffer-complete-word
-   'self-insert-command
-   minibuffer-local-completion-map))
-
-;;(use-package eglot
-;;  :config
-;;  (add-to-list 'eglot-server-programs '(scala-mode . ("metals-emacs")))
-;;  ;; (optional) Automatically start metals for Scala files.
-;;  :hook (scala-mode . eglot-ensure))
-
-;; Enable nice rendering of diagnostics like compile errors.
-(use-package flycheck
-  :init (global-flycheck-mode))
-
-(use-package lsp-mode
-  :init (setq lsp-prefer-flymake nil))
-
-(use-package lsp-ui
-  :hook (lsp-mode . lsp-ui-mode))
-
-(use-package lsp-scala
-  :load-path "~/.emacs.d/git/lsp-scala"
-  :after scala-mode
-  :demand t
-  ;; Optional - enable lsp-scala automatically in scala files
-  :hook (scala-mode . lsp))
-
-(use-package dhall-mode
-  :config
-  (setq-default dhall-format-arguments '("--ascii")))
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:
+;;; init.el ends here
