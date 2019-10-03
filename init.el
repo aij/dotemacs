@@ -46,6 +46,10 @@
 (use-package epkg
   :defer t)
 
+(use-package clang-format
+  :after cc-mode
+  :bind (:map c-mode-base-map ("C-M-<tab>" . clang-format-region)))
+
 (use-package custom
   :no-require t
   :config

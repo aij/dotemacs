@@ -7,6 +7,9 @@
 [borg]
 	pushDefault = locutus
 	collective = emacsg
+[submodule "clang-format"]
+	path = lib/clang-format
+	url = git@github.com:emacsmirror/clang-format.git
 [submodule "closql"]
 	path = lib/closql
 	url = git@github.com:emacscollective/closql.git

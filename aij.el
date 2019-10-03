@@ -60,6 +60,9 @@
  '(rainbow-delimiters-depth-8-face ((t (:foreground "magenta1"))))
  '(rainbow-delimiters-depth-9-face ((t (:foreground "hot pink")))))
 
+;; Switch quickly between .h/.c .h/.cpp etc.
+(global-set-key (kbd "C-o") 'ff-find-other-file)
+
 ;;(add-to-list 'auto-mode-alist '("\\.js$" . js2-jsx-mode))
 ;;(add-to-list 'auto-mode-alist '("\\.jsx$" . js2-jsx-mode))
 ;;(add-to-list 'auto-mode-alist '("\\.js$" . rjsx-mode))
