@@ -332,6 +332,10 @@
   (global-undo-tree-mode)
   (setq undo-tree-mode-lighter ""))
 
+(use-package ws-butler
+  :config
+  (ws-butler-global-mode))
+
 (use-package yasnippet)
 
 (progn ;     startup
