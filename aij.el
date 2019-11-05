@@ -215,7 +215,10 @@
 (use-package lsp-mode
   ;; :init (setq lsp-prefer-flymake nil)
   ;; Enable lsp-scala automatically in scala files
-  :hook (scala-mode . lsp))
+  :hook (scala-mode . lsp)
+        (c-mode . lsp)
+        (c++-mode . lsp)
+  :config (load-library "cquery"))
 
 (use-package dhall-mode
   :config
