@@ -92,6 +92,9 @@
 [submodule "groovy-mode"]
 	path = lib/groovy-mode
 	url = git@github.com:Groovy-Emacs-Modes/groovy-emacs-modes.git
+[submodule "haskell-mode"]
+	path = lib/haskell-mode
+	url = git@github.com:haskell/haskell-mode.git
 [submodule "highlight-indent-guides"]
 	path = lib/highlight-indent-guides
 	url = git@github.com:DarthFennec/highlight-indent-guides.git
@@ -164,6 +167,7 @@
 [submodule "notmuch"]
 	path = lib/notmuch
 	url = https://git.notmuchmail.org/git/notmuch
+	load-path = emacs
 [submodule "orgit"]
 	path = lib/orgit
 	url = git@github.com:magit/orgit.git
