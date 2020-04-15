@@ -164,6 +164,7 @@
 [submodule "notmuch"]
 	path = lib/notmuch
 	url = https://git.notmuchmail.org/git/notmuch
+	load-path = emacs
 [submodule "orgit"]
 	path = lib/orgit
 	url = git@github.com:magit/orgit.git
