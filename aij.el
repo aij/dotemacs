@@ -215,7 +215,9 @@
 (use-package lsp-mode
   ;; :init (setq lsp-prefer-flymake nil)
   ;; Enable lsp-scala automatically in scala files
-  :hook (scala-mode . lsp))
+  :hook (scala-mode . lsp)
+        (c-mode . lsp)
+        (c++-mode . lsp))
 
 (use-package dhall-mode
   :config
