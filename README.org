@@ -1,0 +1,117 @@
+* Tasks
+** TODO Learn org-mode
+** TODO Borgify .emacs.d
+** TODO Documentation
+
+
+* Introduction
+
+This is my EMACS configuration. It is not nearly as customized as
+some, but it is customized enough that I definitely wouldn't want to
+start over from scratch each time I get a new machine.
+
+* How I got here
+
+** The beginning
+
+Near the end of the last century, I was tasked to set up a mail server
+for the company I worked for. I would have used OS/2 (since I had set
+up ~sendmail~ on OS/2 before, and unlike Windows, OS/2 had this
+strange tendency to *not crash*) but my boss had recently heard of
+this thing called "Linux". So, with a Compaq Proliant server, RedHat
+5.2 CD, and manuals in hand, I proceeded to RTFM and become the
+resident Linux "expert". The manual recomended learning VI since you
+will find it on virtually every Unix server. So I did that. It also
+mentioned EMACS as being a more powerful editor, so I played around
+with it a bit.
+
+I then installed Linux on my home computer too. And on my main work
+computer. Unbeknownst to me, this is when my EMACS configuration
+management problems started.
+
+** Sneakernet days
+
+At first, I simply configured EMACS by going to the Options menu and
+configuring it how I liked. When I found a new setting I liked, I
+would change it at work and then at home in the evening (or at home
+and then at work the next morning).
+
+Well, mostly. I sometimes changed a setting on one machine and forgot
+to update the other. In other words, I began to suffer from
+configuration drift.
+
+Since emacs stores it's entire configuration in one file, the solution
+to this was simple: Start copying my ~~/.emacs~ from one machine to the
+other.
+
+I initially started copying my ~~/.emacs~ via floppy disk, running
+~diff~ and resolving conflicts as needed. I could have dialed-in to
+work, but the exhorbitant per-minute fees the telco charged made
+floppies look like a good idea.)
+
+** Git
+
+On Wed Oct 28 21:51:23 2009 -0400, I began tracking my dotfiles in
+mercurial. It was faster than darcs, but still quite slow during ~hg
+update~ with a lot of untracked files in my home directory.
+
+On Sun Nov 1 20:34:41 2009 -0500 (EDT), I began tracking my dotfiles in git.
+On Mon May 8 10:00:00 2017 -0500 (CST), I first included my ~.emacs~.
+
+** Package management
+
+For the longest time, package management wasn't much of an issue, at
+least not for EMACS. With RedHad, the easy solution was to simply
+install *all the packages*.
+
+When I switched to Debian, installing additional packages later (with
+~apt-get~) was so much easier that I eventually came to start
+installing only a minimal system, and manually installing only the
+specific additional packages I wanted later. (Also Debian had so many
+packages [some of which conflicted with each other] that installing
+all of them wasn't even an option.)
+
+I started to maintain lists of Debian packages I wanted installed on
+every system (~base_debs.txt~) and extra packages for desktops
+(~extra_debs.txt~). I then switched to Gentoo for a few years and did
+the same (~base_ebuilds.txt~ & ~extra_ebuilds.txt~), but ended up
+switching back to Debian for it's stability and first-class support
+for a plethora of architectures. (As a security conscious person, I
+value heterogeneous computer architectures.)
+
+For the longest time, I simply manually installed any nonstandard
+emacs modes I needed via apt-get. At some point I started using
+~use-package~ which made it really easy to install extra packages via
+~package.el~.
+
+~package.el~ was great except that it was yet another package manager
+to keep up-to-date, I ended up with different versions across systems,
+and when an upgrade broke something, I was SOL.
+
+
+** NixOS
+
+I started using NixOS at home first and later switch to it at work
+too. By exclusively configuring my system via ~configuration.nix~, it
+solves the configuration drift problem for my system, though not for
+my user config.
+
+On TODO I began tracking Emacs packages via Nix, and on Thu Oct 19
+16:33:51 2017 -0500, I disabled ~package.el~ archives and switched to
+managing emacs packages exclusively through NixOS, except for
+~ensime-emacs~ which I tracked via a git checkout.
+
+This works pretty well, except that adding a new package requires
+committing to two git repos (because I don't keep my ~.emacs.d~ in the
+same repo as my ~configuration.nix~). Sometimes packages that are
+available in ~nixos-unstable~ are not available in the current stable
+release. And occasionally, a package I want is not yet available in
+NixOS at all, so I end up tracking it as a git submodule.
+
+
+** Borg
+
+If I'm going to track some packages as git submodules, why not do it
+consistently? Borg seems like it would make it easy.
+
+* What is here now
