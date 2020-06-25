@@ -217,8 +217,7 @@
   ;; Enable lsp-scala automatically in scala files
   :hook (scala-mode . lsp)
         (c-mode . lsp)
-        (c++-mode . lsp)
-  :config (load-library "cquery"))
+        (c++-mode . lsp))
 
 (use-package dhall-mode
   :config

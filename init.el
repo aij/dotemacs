@@ -338,19 +338,6 @@
 
 (use-package yasnippet)
 
-;;To turn on cquery for all C/C++ modes:
-;(defun cquery//enable ()
-;  (condition-case nil
-;      (lsp)
-;    (user-error nil)))
-;
-;(use-package cquery
-;  :commands lsp
-;  :init (add-hook 'c-mode-hook #'cquery//enable)
-;        (add-hook 'c++-mode-hook #'cquery//enable))
-
-
-
 (progn ;     startup
   (message "Loading %s...done (%.3fs)" user-init-file
            (float-time (time-subtract (current-time)
