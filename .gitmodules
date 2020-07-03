@@ -101,6 +101,9 @@
 [submodule "ht"]
 	path = lib/ht
 	url = git@github.com:Wilfred/ht.el.git
+[submodule "hydra"]
+	path = lib/hydra
+	url = git@github.com:abo-abo/hydra.git
 [submodule "ini-mode"]
 	path = lib/ini-mode
 	url = git@github.com:Lindydancer/ini-mode.git
