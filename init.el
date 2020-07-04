@@ -9,14 +9,15 @@
   (setq user-init-file (or load-file-name buffer-file-name))
   (setq user-emacs-directory (file-name-directory user-init-file))
   (message "Loading %s..." user-init-file)
-  (setq package-enable-at-startup nil)
-  ;; (package-initialize)
+  (when (< emacs-major-version 27)
+    (setq package-enable-at-startup nil)
+    ;; (package-initialize)
+    (load-file (expand-file-name "early-init.el" user-emacs-directory)))
   (setq inhibit-startup-buffer-menu t)
   (setq inhibit-startup-screen t)
   (setq inhibit-startup-echo-area-message "locutus")
   (setq initial-buffer-choice t)
   (setq initial-scratch-message "")
-  (setq load-prefer-newer t)
   (scroll-bar-mode 0)
   (tool-bar-mode 0)
   (menu-bar-mode 0))
@@ -31,10 +32,7 @@
   (setq use-package-verbose t))
 
 (use-package auto-compile
-  :demand t
   :config
-  (auto-compile-on-load-mode)
-  (auto-compile-on-save-mode)
   (setq auto-compile-display-buffer               nil)
   (setq auto-compile-mode-line-counter            t)
   (setq auto-compile-source-recreate-deletes-dest t)
@@ -88,6 +86,14 @@
 (use-package diff-hl-flydiff
   :config (diff-hl-flydiff-mode))
 
+(use-package diff-mode
+  :defer t
+  :config
+  (when (>= emacs-major-version 27)
+    (set-face-attribute 'diff-refine-changed nil :extend t)
+    (set-face-attribute 'diff-refine-removed nil :extend t)
+    (set-face-attribute 'diff-refine-added   nil :extend t)))
+
 (use-package dim-autoload
   :config (global-dim-autoload-cookies-mode))
 
@@ -102,13 +108,6 @@
 (use-package eldoc
   :when (version< "25" emacs-version)
   :config (global-eldoc-mode))
-
-(use-package fill-column-indicator
-  :config
-  (setq fci-rule-width 2)
-  (setq fci-rule-column 80)
-  (add-hook 'emacs-lisp-mode-hook 'fci-mode)
-  (add-hook 'git-commit-setup-hook 'fci-mode))
 
 (use-package forge
   :after magit)
@@ -161,9 +160,6 @@
   :bind (("C-x g"   . magit-status)
          ("C-x M-g" . magit-dispatch))
   :config
-  (setq magit-pull-or-fetch t)
-  (define-key magit-mode-map "f" 'magit-pull)
-  (define-key magit-mode-map "F" nil)
   (define-key magit-file-mode-map (kbd "C-c g") 'magit-file-dispatch)
   ;;
   ;; Disable safety nets
@@ -308,7 +304,11 @@
 
 (use-package smerge-mode
   :defer t
-  :config (setq smerge-refine-ignore-whitespace nil))
+  :config
+  (setq smerge-refine-ignore-whitespace nil)
+  (when (>= emacs-major-version 27)
+    (set-face-attribute 'smerge-refined-removed nil :extend t)
+    (set-face-attribute 'smerge-refined-added   nil :extend t)))
 
 (use-package term
   :defer t
@@ -325,7 +325,11 @@
   (add-to-list 'tramp-default-proxies-alist '(nil "\\`root\\'" "/ssh:%h:"))
   (add-to-list 'tramp-default-proxies-alist '("localhost" nil nil))
   (add-to-list 'tramp-default-proxies-alist
-               (list (regexp-quote (system-name)) nil nil)))
+               (list (regexp-quote (system-name)) nil nil))
+  (setq vc-ignore-dir-regexp
+        (format "\\(%s\\)\\|\\(%s\\)"
+                vc-ignore-dir-regexp
+                tramp-file-name-regexp)))
 
 (use-package undo-tree
   :config
