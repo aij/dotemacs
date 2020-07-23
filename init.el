@@ -230,7 +230,12 @@
 (use-package morlock
   :config (global-morlock-mode))
 
-(use-package notmuch)
+(use-package notmuch
+  :config
+  ;; From https://notmuchmail.org/emacstips/#index11h2
+  (setq mail-specify-envelope-from t)
+  (setq mail-envelope-from 'header)
+  (setq message-sendmail-envelope-from 'header))
 
 (use-package paren
   :config (show-paren-mode))
