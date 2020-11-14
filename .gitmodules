@@ -1,12 +1,15 @@
+[submodule "async"]
+	path = lib/async
+	url = git@github.com:jwiegley/emacs-async.git
 [submodule "auto-compile"]
 	path = lib/auto-compile
 	url = git@github.com:emacscollective/auto-compile.git
-[submodule "borg"]
-	path = lib/borg
-	url = git@github.com:emacscollective/borg.git
 [borg]
 	pushDefault = locutus
 	collective = emacsg
+[submodule "borg"]
+	path = lib/borg
+	url = git@github.com:emacscollective/borg.git
 [submodule "clang-format"]
 	path = lib/clang-format
 	url = git@github.com:emacsmirror/clang-format.git
@@ -216,6 +219,9 @@
 [submodule "rtags"]
 	path = lib/rtags
 	url = git@github.com:Andersbakken/rtags.git
+[submodule "rustic"]
+	path = lib/rustic
+	url = git@github.com:brotzeit/rustic.git
 [submodule "s"]
 	path = lib/s
 	url = git@github.com:magnars/s.el.git
@@ -253,6 +259,9 @@
 [submodule "ws-butler"]
 	path = lib/ws-butler
 	url = git@github.com:lewang/ws-butler.git
+[submodule "xterm-color"]
+	path = lib/xterm-color
+	url = git@github.com:atomontage/xterm-color.git
 [submodule "yaml-mode"]
 	path = lib/yaml-mode
 	url = git@github.com:yoshiki/yaml-mode.git
