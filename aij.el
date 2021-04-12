@@ -63,6 +63,12 @@
 ;; Switch quickly between .h/.c .h/.cpp etc.
 (global-set-key (kbd "C-o") 'ff-find-other-file)
 
+;; Keybindings recommended for org-mode. https://orgmode.org/manual/Activation.html
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c c") 'org-capture)
+
+
 ;;(add-to-list 'auto-mode-alist '("\\.js$" . js2-jsx-mode))
 ;;(add-to-list 'auto-mode-alist '("\\.jsx$" . js2-jsx-mode))
 ;;(add-to-list 'auto-mode-alist '("\\.js$" . rjsx-mode))
@@ -222,3 +228,13 @@
 (use-package dhall-mode
   :config
   (setq-default dhall-format-arguments '("--ascii")))
+
+(use-package org
+  :defer t
+  :config
+  (setq org-log-done t)
+  (setq org-agenda-files (list "~/org/"))
+  (setq org-agenda-todo-ignore-scheduled 'future)
+  ; https://orgmode.org/manual/Tracking-TODO-state-changes.html
+  (setq org-todo-keywords
+      '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)"))))
