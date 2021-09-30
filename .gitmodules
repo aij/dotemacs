@@ -25,6 +25,7 @@
 [submodule "dash"]
 	path = lib/dash
 	url = git@github.com:magnars/dash.el.git
+	no-byte-compile = dash-functional.el
 	no-makeinfo = dash-template.texi
 [submodule "delight"]
 	path = lib/delight
@@ -133,11 +134,15 @@
 	path = lib/lsp-ui
 	url = git@github.com:emacs-lsp/lsp-ui.git
 [submodule "macrostep"]
+	# pending https://github.com/joddie/macrostep/pull/24
+	#     and https://github.com/joddie/macrostep/pull/26
+	remote = stale git@github.com:joddie/macrostep.git
 	path = lib/macrostep
-	url = git@github.com:joddie/macrostep.git
+	url = git@github.com:tarsiiformes/macrostep.git
 [submodule "magit"]
 	path = lib/magit
 	url = git@github.com:magit/magit.git
+	no-byte-compile = lisp/magit-libgit.el
 	recursive-byte-compile = true
 	info-path = Documentation
 [submodule "magit-imerge"]
@@ -207,6 +212,9 @@
 [submodule "purescript-mode"]
 	path = lib/purescript-mode
 	url = git@github.com:purescript-emacs/purescript-mode.git
+[submodule "queue"]
+	path = lib/queue
+	url = git@github.com:emacsmirror/queue.git
 [submodule "rainbow-delimiters"]
 	path = lib/rainbow-delimiters
 	url = git@github.com:Fanael/rainbow-delimiters.git
@@ -248,8 +256,9 @@
 	path = lib/treepy
 	url = git@github.com:volrath/treepy.el.git
 [submodule "undo-tree"]
+	remote = silent http://www.dr-qubit.org/git/undo-tree.git
 	path = lib/undo-tree
-	url = http://www.dr-qubit.org/git/undo-tree.git
+	url = git@github.com:tarsiiformes/undo-tree.git
 [submodule "use-package"]
 	path = lib/use-package
 	url = git@github.com:jwiegley/use-package.git
@@ -265,6 +274,9 @@
 [submodule "xterm-color"]
 	path = lib/xterm-color
 	url = git@github.com:atomontage/xterm-color.git
+[submodule "yaml"]
+	path = lib/yaml
+	url = git@github.com:zkry/yaml.el.git
 [submodule "yaml-mode"]
 	path = lib/yaml-mode
 	url = git@github.com:yoshiki/yaml-mode.git

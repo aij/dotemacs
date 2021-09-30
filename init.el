@@ -24,14 +24,17 @@
     (tool-bar-mode 0))
   (menu-bar-mode 0))
 
-(progn ;    `borg'
+(eval-and-compile ; `borg'
   (add-to-list 'load-path (expand-file-name "lib/borg" user-emacs-directory))
-  (require  'borg)
+  (require 'borg)
   (borg-initialize))
 
 (progn ;    `use-package'
   (require  'use-package)
   (setq use-package-verbose t))
+
+(use-package dash)
+(use-package eieio)
 
 (use-package auto-compile
   :config
@@ -58,6 +61,7 @@
     (load custom-file)))
 
 (use-package server
+  :commands (server-running-p)
   :config (or (server-running-p) (server-mode)))
 
 (progn ;     startup
@@ -77,7 +81,7 @@
   (add-hook 'before-save-hook 'copyright-update))
 
 (use-package dash
-  :config (dash-enable-font-lock))
+  :config (global-dash-fontify-mode 1))
 
 (use-package diff-hl
   :config
@@ -144,27 +148,26 @@
   (add-hook 'emacs-lisp-mode-hook 'reveal-mode)
   (defun indent-spaces-mode ()
     (setq indent-tabs-mode nil))
-  (add-hook 'lisp-interaction-mode-hook #'indent-spaces-mode))
+  (add-hook 'lisp-interaction-mode-hook 'indent-spaces-mode))
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode))
 
 (use-package magit
   :defer t
-  :functions (magit-add-section-hook)
-  :init
+  :commands (magit-add-section-hook)
+  ;;
+  ;; Key bindings
+  :bind (("C-c g" . magit-dispatch)
+         ("C-c f" . magit-file-dispatch))
   ;;
   ;; Margin settings
+  :init
   (setq magit-log-margin '(nil age magit-log-margin-width nil 15))
   (setq magit-refs-margin-for-tags t)
   ;;
-  ;; Key bindings
-  :bind (("C-x g"   . magit-status)
-         ("C-x M-g" . magit-dispatch))
-  :config
-  (define-key magit-file-mode-map (kbd "C-c g") 'magit-file-dispatch)
-  ;;
   ;; Disable safety nets
+  :config
   (setq magit-commit-squash-confirm nil)
   (setq magit-save-repository-buffers 'dontask)
   (setf (nth 2 (assq 'magit-stash-pop  magit-dwim-selection)) t)
@@ -186,13 +189,10 @@
   (add-to-list 'magit-repository-directories (cons "~/.emacs.d/" 0))
   (add-to-list 'magit-repository-directories (cons "~/.emacs.d/lib/" 1))
   ;;
-  ;; Commit settings
-  (setq magit-commit-extend-override-date nil)
-  (setq magit-commit-reword-override-date nil)
-  ;;
   ;; Branch settings
   (setq magit-branch-adjust-remote-upstream-alist
-        '(("master" "master" "next" "maint")))
+        '(("main"   . ("main" "master" "next" "maint"))
+          ("master" . ("main" "master" "next" "maint"))))
   ;;
   ;; Push settings
   (setq magit-push-current-set-remote-if-missing 'default)
@@ -249,7 +249,7 @@
   :config (global-prettify-symbols-mode)
   (defun indicate-buffer-boundaries-left ()
     (setq indicate-buffer-boundaries 'left))
-  (add-hook 'prog-mode-hook #'indicate-buffer-boundaries-left))
+  (add-hook 'prog-mode-hook 'indicate-buffer-boundaries-left))
 
 (use-package projectile
   :demand
@@ -324,7 +324,7 @@
   (add-hook 'term-exec-hook 'with-editor-export-editor))
 
 (progn ;    `text-mode'
-  (add-hook 'text-mode-hook #'indicate-buffer-boundaries-left))
+  (add-hook 'text-mode-hook 'indicate-buffer-boundaries-left))
 
 (use-package tramp
   :defer t
@@ -338,6 +338,10 @@
                 vc-ignore-dir-regexp
                 tramp-file-name-regexp)))
 
+(use-package tramp-sh
+  :defer t
+  :config (cl-pushnew 'tramp-own-remote-path tramp-remote-path))
+
 (use-package undo-tree
   :config
   (global-undo-tree-mode)
@@ -348,6 +352,8 @@
   (ws-butler-global-mode))
 
 (use-package yasnippet)
+
+;;; Tequila worms
 
 (progn ;     startup
   (message "Loading %s...done (%.3fs)" user-init-file
