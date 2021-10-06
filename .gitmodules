@@ -227,9 +227,6 @@
 [submodule "rjsx-mode"]
 	path = lib/rjsx-mode
 	url = git@github.com:felipeochoa/rjsx-mode.git
-[submodule "rtags"]
-	path = lib/rtags
-	url = git@github.com:Andersbakken/rtags.git
 [submodule "rustic"]
 	path = lib/rustic
 	url = git@github.com:brotzeit/rustic.git
