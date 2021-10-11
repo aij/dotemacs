@@ -42,6 +42,9 @@
 [submodule "direnv"]
 	path = lib/direnv
 	url = git@github.com:wbolster/emacs-direnv.git
+[submodule "dockerfile-mode"]
+	path = lib/dockerfile-mode
+	url = git@github.com:spotify/dockerfile-mode.git
 [submodule "dumb-jump"]
 	path = lib/dumb-jump
 	url = git@github.com:jacktasia/dumb-jump.git
