@@ -160,6 +160,9 @@
 [submodule "math-symbol-lists"]
 	path = lib/math-symbol-lists
 	url = git@github.com:vspinu/math-symbol-lists.git
+[submodule "meson-mode"]
+	path = lib/meson-mode
+	url = git@github.com:wentasah/meson-mode.git
 [submodule "mmm-mode"]
 	path = lib/mmm-mode
 	url = git@github.com:purcell/mmm-mode.git
