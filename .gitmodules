@@ -23,10 +23,10 @@
 	path = lib/company
 	url = git@github.com:company-mode/company-mode.git
 [submodule "dash"]
-	path = lib/dash
-	url = git@github.com:magnars/dash.el.git
 	no-byte-compile = dash-functional.el
 	no-makeinfo = dash-template.texi
+	path = lib/dash
+	url = git@github.com:magnars/dash.el.git
 [submodule "delight"]
 	path = lib/delight
 	url = https://git.savannah.nongnu.org/git/delight.git
@@ -49,9 +49,9 @@
 	path = lib/dumb-jump
 	url = git@github.com:jacktasia/dumb-jump.git
 [submodule "emacsql"]
+	no-byte-compile = emacsql-pg.el
 	path = lib/emacsql
 	url = git@github.com:skeeto/emacsql.git
-	no-byte-compile = emacsql-pg.el
 [submodule "epkg"]
 	path = lib/epkg
 	url = git@github.com:emacscollective/epkg.git
@@ -73,7 +73,6 @@
 [submodule "forge"]
 	path = lib/forge
 	url = git@github.com:magit/forge.git
-	info-path = docs
 [submodule "ghub"]
 	path = lib/ghub
 	url = git@github.com:magit/ghub.git
@@ -127,9 +126,9 @@
 	path = lib/json-snatcher
 	url = git@github.com:Sterlingg/json-snatcher.git
 [submodule "libgit"]
+	build-step = make
 	path = lib/libgit
 	url = git@github.com:magit/libegit2.git
-	build-step = make
 [submodule "lsp-mode"]
 	path = lib/lsp-mode
 	url = git@github.com:emacs-lsp/lsp-mode.git
@@ -143,11 +142,9 @@
 	path = lib/macrostep
 	url = git@github.com:tarsiiformes/macrostep.git
 [submodule "magit"]
+	no-byte-compile = lisp/magit-libgit.el
 	path = lib/magit
 	url = git@github.com:magit/magit.git
-	no-byte-compile = lisp/magit-libgit.el
-	recursive-byte-compile = true
-	info-path = Documentation
 [submodule "magit-imerge"]
 	path = lib/magit-imerge
 	url = git@github.com:magit/magit-imerge.git
@@ -254,7 +251,6 @@
 [submodule "transient"]
 	path = lib/transient
 	url = git@github.com:magit/transient.git
-	info-path = docs
 [submodule "treepy"]
 	path = lib/treepy
 	url = git@github.com:volrath/treepy.el.git
