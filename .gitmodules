@@ -22,6 +22,9 @@
 [submodule "company"]
 	path = lib/company
 	url = git@github.com:company-mode/company-mode.git
+[submodule "compat"]
+	path = lib/compat
+	url = https://git.sr.ht/~pkal/compat
 [submodule "dash"]
 	no-byte-compile = dash-functional.el
 	no-makeinfo = dash-template.texi
@@ -33,6 +36,9 @@
 [submodule "dhall-mode"]
 	path = lib/dhall-mode
 	url = git@github.com:psibi/dhall-mode.git
+[submodule "debbugs"]
+	path = lib/debbugs
+	url = git@github.com:emacsmirror/debbugs.git
 [submodule "diff-hl"]
 	path = lib/diff-hl
 	url = git@github.com:dgutov/diff-hl.git
@@ -48,10 +54,16 @@
 [submodule "dumb-jump"]
 	path = lib/dumb-jump
 	url = git@github.com:jacktasia/dumb-jump.git
+[submodule "elpa-admin"]
+	path = lib/elpa-admin
+	url = https://git.sv.gnu.org/r/emacs/elpa.git
 [submodule "emacsql"]
 	no-byte-compile = emacsql-pg.el
 	path = lib/emacsql
 	url = git@github.com:skeeto/emacsql.git
+[submodule "emacsql-sqlite-builtin"]
+	path = lib/emacsql-sqlite-builtin
+	url = git@github.com:emacscollective/emacsql-sqlite-builtin.git
 [submodule "epkg"]
 	path = lib/epkg
 	url = git@github.com:emacscollective/epkg.git
@@ -185,6 +197,9 @@
 [submodule "orgit"]
 	path = lib/orgit
 	url = git@github.com:magit/orgit.git
+[submodule "orgit-forge"]
+	path = lib/orgit-forge
+	url = git@github.com:magit/orgit-forge.git
 [submodule "orglink"]
 	path = lib/orglink
 	url = git@github.com:tarsius/orglink.git
@@ -248,6 +263,13 @@
 [submodule "spinner"]
 	path = lib/spinner
 	url = git@github.com:Malabarba/spinner.el.git
+[submodule "sisyphus"]
+	path = lib/sisyphus
+	url = git@github.com:magit/sisyphus.git
+[submodule "sqlite3"]
+	build-step = make
+	path = lib/sqlite3
+	url = git@github.com:pekingduck/emacs-sqlite3-api.git
 [submodule "transient"]
 	path = lib/transient
 	url = git@github.com:magit/transient.git

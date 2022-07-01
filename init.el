@@ -29,7 +29,7 @@
   (require 'borg)
   (borg-initialize))
 
-(progn ;    `use-package'
+(eval-and-compile ; `use-package'
   (require  'use-package)
   (setq use-package-verbose t))
 
@@ -47,7 +47,12 @@
 (use-package no-littering)
 
 (use-package epkg
-  :defer t)
+  :defer t
+  :init
+  (setq epkg-repository
+        (expand-file-name "var/epkgs/" user-emacs-directory))
+  (setq epkg-database-connector
+        (if (>= emacs-major-version 29) 'sqlite-builtin 'sqlite-module)))
 
 (use-package clang-format
   :after cc-mode
@@ -116,7 +121,10 @@
   :config (global-eldoc-mode))
 
 (use-package forge
-  :after magit)
+  :after magit
+  :init
+  (setq forge-database-connector
+        (if (>= emacs-major-version 29) 'sqlite-builtin 'sqlite-module)))
 
 (use-package git-commit
   :defer t
@@ -282,6 +290,10 @@
 
 (use-package simple
   :config (column-number-mode))
+
+(use-package sisyphus
+  :when (>= emacs-major-version 27)
+  :after magit)
 
 (use-package smartparens
   :delight smartparens-mode
