@@ -262,7 +262,9 @@
 (use-package projectile
   :demand
   :delight " P"
-  :config (projectile-global-mode t)
+  :config
+  (projectile-global-mode t)
+  (setq projectile-completion-system 'ido)
   :bind   (("C-c p" . projectile-command-map)
            ("s-f" . projectile-find-file)
            ("s-F" . projectile-grep)))
