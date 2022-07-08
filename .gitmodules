@@ -93,7 +93,9 @@
 	url = git@github.com:magit/git-modes.git
 [submodule "git/ensime-emacs"]
 	path = git/ensime-emacs
-	url = https://github.com/ensime/ensime-emacs
+	#url = https://github.com/ensime/ensime-emacs
+	# Upstream repo is now a 404. I saved the old version I had locally to sourcehut.
+	url = git@git.sr.ht:~aij/ensime-emacs
 	branch = 2.0
 [submodule "git/flow-for-emacs"]
 	path = git/flow-for-emacs
