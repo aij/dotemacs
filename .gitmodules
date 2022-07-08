@@ -144,6 +144,9 @@
 [submodule "lsp-mode"]
 	path = lib/lsp-mode
 	url = git@github.com:emacs-lsp/lsp-mode.git
+	# Set load path explicitly so borg will find the lsp clients too.
+	load-path = .
+	load-path = clients
 [submodule "lsp-ui"]
 	path = lib/lsp-ui
 	url = git@github.com:emacs-lsp/lsp-ui.git
