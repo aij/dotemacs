@@ -30,15 +30,15 @@
 	no-makeinfo = dash-template.texi
 	path = lib/dash
 	url = git@github.com:magnars/dash.el.git
+[submodule "debbugs"]
+	path = lib/debbugs
+	url = git@github.com:emacsmirror/debbugs.git
 [submodule "delight"]
 	path = lib/delight
 	url = https://git.savannah.nongnu.org/git/delight.git
 [submodule "dhall-mode"]
 	path = lib/dhall-mode
 	url = git@github.com:psibi/dhall-mode.git
-[submodule "debbugs"]
-	path = lib/debbugs
-	url = git@github.com:emacsmirror/debbugs.git
 [submodule "diff-hl"]
 	path = lib/diff-hl
 	url = git@github.com:dgutov/diff-hl.git
@@ -250,6 +250,9 @@
 [submodule "rjsx-mode"]
 	path = lib/rjsx-mode
 	url = git@github.com:felipeochoa/rjsx-mode.git
+[submodule "rust-mode"]
+	path = lib/rust-mode
+	url = git@github.com:rust-lang/rust-mode.git
 [submodule "rustic"]
 	path = lib/rustic
 	url = git@github.com:brotzeit/rustic.git
@@ -262,15 +265,15 @@
 [submodule "scala-mode"]
 	path = lib/scala-mode
 	url = git@github.com:ensime/emacs-scala-mode.git
+[submodule "sisyphus"]
+	path = lib/sisyphus
+	url = git@github.com:magit/sisyphus.git
 [submodule "smartparens"]
 	path = lib/smartparens
 	url = git@github.com:Fuco1/smartparens.git
 [submodule "spinner"]
 	path = lib/spinner
 	url = git@github.com:Malabarba/spinner.el.git
-[submodule "sisyphus"]
-	path = lib/sisyphus
-	url = git@github.com:magit/sisyphus.git
 [submodule "sqlite3"]
 	build-step = make
 	path = lib/sqlite3
