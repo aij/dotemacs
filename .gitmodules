@@ -15,7 +15,7 @@
 	url = git@github.com:emacsmirror/clang-format.git
 [submodule "closql"]
 	path = lib/closql
-	url = git@github.com:emacscollective/closql.git
+	url = git@github.com:magit/closql.git
 [submodule "cmake-mode"]
 	path = lib/cmake-mode
 	url = git@github.com:emacsmirror/cmake-mode.git
@@ -60,10 +60,7 @@
 [submodule "emacsql"]
 	no-byte-compile = emacsql-pg.el
 	path = lib/emacsql
-	url = git@github.com:skeeto/emacsql.git
-[submodule "emacsql-sqlite-builtin"]
-	path = lib/emacsql-sqlite-builtin
-	url = git@github.com:emacscollective/emacsql-sqlite-builtin.git
+	url = git@github.com:magit/emacsql.git
 [submodule "epkg"]
 	path = lib/epkg
 	url = git@github.com:emacscollective/epkg.git
@@ -139,10 +136,6 @@
 [submodule "json-snatcher"]
 	path = lib/json-snatcher
 	url = git@github.com:Sterlingg/json-snatcher.git
-[submodule "libgit"]
-	build-step = make
-	path = lib/libgit
-	url = git@github.com:magit/libegit2.git
 [submodule "lsp-mode"]
 	path = lib/lsp-mode
 	url = git@github.com:emacs-lsp/lsp-mode.git
@@ -153,11 +146,8 @@
 	path = lib/lsp-ui
 	url = git@github.com:emacs-lsp/lsp-ui.git
 [submodule "macrostep"]
-	# pending https://github.com/joddie/macrostep/pull/24
-	#     and https://github.com/joddie/macrostep/pull/26
-	remote = stale git@github.com:joddie/macrostep.git
 	path = lib/macrostep
-	url = git@github.com:tarsiiformes/macrostep.git
+	url = git@github.com:emacsorphanage/macrostep.git
 [submodule "magit"]
 	no-byte-compile = lisp/magit-libgit.el
 	path = lib/magit
@@ -214,9 +204,6 @@
 [submodule "package-lint"]
 	path = lib/package-lint
 	url = git@github.com:purcell/package-lint.git
-[submodule "packed"]
-	path = lib/packed
-	url = git@github.com:emacscollective/packed.git
 [submodule "paren-face"]
 	path = lib/paren-face
 	url = git@github.com:tarsius/paren-face.git
