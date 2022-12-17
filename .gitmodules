@@ -27,6 +27,9 @@
 [submodule "elpa-admin"]
 	path = lib/elpa-admin
 	url = https://git.sv.gnu.org/r/emacs/elpa.git
+[submodule "elx"]
+	path = lib/elx
+	url = https://github.com/emacscollective/elx
 [submodule "emacsql"]
 	no-byte-compile = emacsql-pg.el
 	path = lib/emacsql
