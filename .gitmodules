@@ -7,6 +7,9 @@
 [borg]
 	pushDefault = locutus
 	collective = emacsg
+[submodule "auto-complete"]
+	path = lib/auto-complete
+	url = https://github.com/auto-complete/auto-complete
 [submodule "borg"]
 	path = lib/borg
 	url = git@github.com:emacscollective/borg.git
@@ -124,6 +127,9 @@
 [submodule "hydra"]
 	path = lib/hydra
 	url = git@github.com:abo-abo/hydra.git
+[submodule "iedit"]
+	path = lib/iedit
+	url = https://github.com/victorhge/iedit
 [submodule "ini-mode"]
 	path = lib/ini-mode
 	url = git@github.com:Lindydancer/ini-mode.git
@@ -170,6 +176,9 @@
 [submodule "math-symbol-lists"]
 	path = lib/math-symbol-lists
 	url = git@github.com:vspinu/math-symbol-lists.git
+[submodule "merlin"]
+	path = lib/merlin
+	url = git@github.com:emacsmirror/merlin.git
 [submodule "meson-mode"]
 	path = lib/meson-mode
 	url = git@github.com:wentasah/meson-mode.git
@@ -277,6 +286,9 @@
 [submodule "treepy"]
 	path = lib/treepy
 	url = git@github.com:volrath/treepy.el.git
+[submodule "tuareg"]
+	path = lib/tuareg
+	url = https://github.com/ocaml/tuareg
 [submodule "undo-tree"]
 	remote = silent http://www.dr-qubit.org/git/undo-tree.git
 	path = lib/undo-tree
