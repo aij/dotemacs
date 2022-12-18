@@ -141,7 +141,7 @@
 	url = git@github.com:Sterlingg/json-snatcher.git
 [submodule "llama"]
 	path = lib/llama
-	url = git@github.com:emacsmirror/llama.git
+	url = https://git.sr.ht/~tarsius/llama
 [submodule "lsp-mode"]
 	path = lib/lsp-mode
 	url = git@github.com:emacs-lsp/lsp-mode.git
