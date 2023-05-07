@@ -35,7 +35,9 @@
   (require  'use-package)
   (setq use-package-verbose t))
 
-(use-package dash)
+(use-package dash
+  :config (global-dash-fontify-mode))
+
 (use-package eieio)
 
 (use-package auto-compile
@@ -86,9 +88,6 @@
   :defer t
   :config
   (add-hook 'before-save-hook 'copyright-update))
-
-(use-package dash
-  :config (global-dash-fontify-mode))
 
 (use-package diff-hl
   :config
