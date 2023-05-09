@@ -60,6 +60,9 @@
 [submodule "elpa-admin"]
 	path = lib/elpa-admin
 	url = https://git.sv.gnu.org/r/emacs/elpa.git
+[submodule "elpy"]
+	path = lib/elpy
+	url = https://github.com/jorgenschaefer/elpy
 [submodule "elx"]
 	path = lib/elx
 	url = https://github.com/emacscollective/elx
@@ -237,6 +240,9 @@
 [submodule "purescript-mode"]
 	path = lib/purescript-mode
 	url = git@github.com:purescript-emacs/purescript-mode.git
+[submodule "pyvenv"]
+	path = lib/pyvenv
+	url = https://github.com/jorgenschaefer/pyvenv
 [submodule "queue"]
 	path = lib/queue
 	url = git@github.com:emacsmirror/queue.git
