@@ -91,6 +91,9 @@
 [submodule "ghub"]
 	path = lib/ghub
 	url = git@github.com:magit/ghub.git
+[submodule "git-link"]
+	path = lib/git-link
+	url = https://github.com/sshaw/git-link
 [submodule "git-modes"]
 	path = lib/git-modes
 	url = git@github.com:magit/git-modes.git
