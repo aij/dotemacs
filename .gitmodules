@@ -13,6 +13,9 @@
 [submodule "auto-complete"]
 	path = lib/auto-complete
 	url = https://github.com/auto-complete/auto-complete
+[submodule "bazel"]
+	path = lib/bazel
+	url = https://github.com/bazelbuild/emacs-bazel-mode
 [submodule "borg"]
 	path = lib/borg
 	url = git@github.com:emacscollective/borg.git
