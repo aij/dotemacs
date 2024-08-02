@@ -199,9 +199,6 @@
 [submodule "nix-mode"]
 	path = lib/nix-mode
 	url = git@github.com:NixOS/nix-mode.git
-[submodule "nixpkgs-fmt"]
-	path = lib/nixpkgs-fmt
-	url = git@github.com:purcell/emacs-nixpkgs-fmt.git
 [submodule "no-littering"]
 	path = lib/no-littering
 	url = git@github.com:emacscollective/no-littering.git
