@@ -37,7 +37,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 98 :width normal))))
+ '(default ((t (:inherit nil :extend nil :stipple nil :background "black" :foreground "green3" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight regular :height 98 :width normal :foundry "PfEd" :family "DejaVu Sans Mono"))))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "red"))))
  '(rainbow-delimiters-depth-2-face ((t (:foreground "orange"))))
  '(rainbow-delimiters-depth-3-face ((t (:foreground "yellow"))))
