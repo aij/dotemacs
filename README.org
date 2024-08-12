@@ -115,3 +115,16 @@ If I'm going to track some packages as git submodules, why not do it
 consistently? Borg seems like it would make it easy.
 
 * What is here now
+
+TODO
+
+** Renaming default branch to main
+
+I have renamed the default branch to ~main~. To update local clones:
+
+#+begin_example
+git branch -m master main
+git fetch origin
+git branch -u origin/main main
+git remote set-head origin -a
+#+end_example
