@@ -32,8 +32,11 @@
   (borg-initialize))
 
 (eval-and-compile ; `use-package'
-  (require  'use-package)
-  (setq use-package-verbose t))
+  (setopt use-package-enable-imenu-support t)
+  (setopt use-package-verbose t)
+  (require 'use-package))
+
+(use-package compat)
 
 (use-package dash
   :config (global-dash-fontify-mode))
@@ -70,7 +73,7 @@
     (load custom-file)))
 
 (use-package server
-  :commands (server-running-p)
+  :functions (server-running-p)
   :config (or (server-running-p) (server-mode)))
 
 (progn ;     startup
@@ -165,13 +168,12 @@
 (use-package magit
   :defer t
   :commands (magit-add-section-hook)
+  :init
   ;;
   ;; Key bindings
-  :bind (("C-c g" . magit-dispatch)
-         ("C-c f" . magit-file-dispatch))
+  (setq magit-define-global-key-bindings 'recommended)
   ;;
   ;; Margin settings
-  :init
   (setq magit-log-margin '(nil age magit-log-margin-width nil 15))
   (setq magit-refs-margin-for-tags t)
   ;;

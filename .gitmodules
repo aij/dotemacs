@@ -7,9 +7,6 @@
 [submodule "auto-compile"]
 	path = lib/auto-compile
 	url = https://github.com/emacscollective/auto-compile.git
-[borg]
-	pushDefault = locutus
-	collective = emacsg
 [submodule "auto-complete"]
 	path = lib/auto-complete
 	url = https://github.com/auto-complete/auto-complete
@@ -63,7 +60,7 @@
 	url = https://github.com/jacktasia/dumb-jump.git
 [submodule "elpa-admin"]
 	path = lib/elpa-admin
-	url = https://git.sv.gnu.org/r/emacs/elpa.git
+	url = https://git.savannah.gnu.org/git/emacs/elpa.git
 [submodule "elx"]
 	path = lib/elx
 	url = https://github.com/emacscollective/elx
@@ -153,7 +150,7 @@
 	url = https://github.com/Sterlingg/json-snatcher.git
 [submodule "llama"]
 	path = lib/llama
-	url = https://git.sr.ht/~tarsius/llama
+	url = https://github.com/tarsius/llama.git
 [submodule "lsp-mode"]
 	path = lib/lsp-mode
 	url = https://github.com/emacs-lsp/lsp-mode.git
@@ -278,9 +275,6 @@
 [submodule "spinner"]
 	path = lib/spinner
 	url = https://github.com/Malabarba/spinner.el.git
-[submodule "sqlite3"]
-	path = lib/sqlite3
-	url = https://github.com/pekingduck/emacs-sqlite3-api.git
 [submodule "transient"]
 	path = lib/transient
 	url = https://github.com/magit/transient.git
@@ -294,9 +288,6 @@
 	remote = silent http://www.dr-qubit.org/git/undo-tree.git
 	path = lib/undo-tree
 	url = https://github.com/tarsiiformes/undo-tree.git
-[submodule "use-package"]
-	path = lib/use-package
-	url = https://github.com/jwiegley/use-package.git
 [submodule "web-mode"]
 	path = lib/web-mode
 	url = https://github.com/fxbois/web-mode.git
