@@ -18,7 +18,7 @@
 	url = https://github.com/emacscollective/borg.git
 [submodule "clang-format"]
 	path = lib/clang-format
-	url = https://github.com/emacsmirror/clang-format.git
+	url = https://github.com/aij/clang-format
 [submodule "closql"]
 	path = lib/closql
 	url = https://github.com/magit/closql.git

@@ -1,0 +1,72 @@
+I've been using borg for a while to manage emacs packages. Borg
+manages packages as git submodules. Among those packages is
+clang-format. At some point after
+51ed45e6835c5ae06affcde759d692d50549c900, the upstream repo I was
+using (git@github.com:emacsmirror/clang-format.git) rewrote history so
+the commit my submodule was referencing
+(1469728c61dcba8fa09c456e841f97e9eb75fa85) could no longer be found
+when running =git submodule update= on a new machine.
+
+I had a local copy I was able to clone to unblock myself, but I also
+want to update to a newer version of clang-format.el.
+
+The new history that ended up on emacsmirror
+https://github.com/emacsmirror/clang-format/commits/a099177b5cd5060597d454e4c1ffdc96b92ba985
+is too opaque for my liking, so I avoided updating for a while.
+
+Now, I'm well overdue for an update.
+
+Looks like the rewritting of =emacsmirror/clang-format= was actually
+intentional per https://github.com/llvm/llvm-project/issues/58902 and
+https://github.com/melpa/melpa/pull/8762#issuecomment-1742241613
+though I still don't understand why previously extracted history would
+have been removed.
+
+* Re-creating the history of 1469728c61dcba8fa09c456e841f97e9eb75fa85
+
+** First try
+
+#+begin_example
+git clone --single-branch --no-local ~/git/llvm-project/ clang-format-el
+cd clang-format-el/
+time git filter-repo --subdirectory-filter clang/tools/clang-format
+#+end_example
+
+Resulting hashes were different. Result included an additional empty commit titled
+=New repository initialized by cvs2svn.= appearing before =Add clang-format binary to cfe.=
+
+** Try two
+
+It looks like =--prune-empty always= could help.
+
+*** Quick try without a fresh clone
+
+#+begin_example
+time git filter-repo --prune-empty always
+#+end_example
+
+And I now have reproduced the same commit:
+
+#+begin_example
+ivan@tobati:~/tmp/clang-format-el$ git log -1 1469728c61dcba8fa09c456e841f97e9eb75fa85
+commit 1469728c61dcba8fa09c456e841f97e9eb75fa85
+Author: Owen Pan <owenpiano@gmail.com>
+Date:   Wed May 8 14:11:12 2019 +0000
+
+    [clang-format] Fix the crash when formatting unsupported encodings
+
+    Fixes PR33946
+
+    Differential Revision: https://reviews.llvm.org/D61559
+
+    llvm-svn: 360257
+#+end_example
+
+
+* Putting it all together
+
+[[file:update-clang-format.sh]]
+
+For me, this takes a few minutes to run, with most of the time being
+spent in =git clone=. I could optimize it to use a local cached clone,
+but I'm not sure it's worth the trouble.
