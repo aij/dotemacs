@@ -31,6 +31,9 @@
 [submodule "compat"]
 	path = lib/compat
 	url = https://github.com/emacs-compat/compat.git
+[submodule "cond-let"]
+	path = lib/cond-let
+	url = https://github.com/tarsius/cond-let
 [submodule "dash"]
 	path = lib/dash
 	url = https://github.com/magnars/dash.el.git
@@ -245,7 +248,7 @@
 	url = https://github.com/Fanael/rainbow-delimiters.git
 [submodule "rainbow-mode"]
 	path = lib/rainbow-mode
-	url = https://github.com/emacsmirror/rainbow-mode.git
+	url = https://git.savannah.gnu.org/git/emacs/elpa.git
 [submodule "reformatter"]
 	path = lib/reformatter
 	url = https://github.com/purcell/reformatter.el.git
@@ -285,10 +288,6 @@
 [submodule "tuareg"]
 	path = lib/tuareg
 	url = https://github.com/ocaml/tuareg
-[submodule "undo-tree"]
-	remote = silent http://www.dr-qubit.org/git/undo-tree.git
-	path = lib/undo-tree
-	url = https://github.com/tarsiiformes/undo-tree.git
 [submodule "web-mode"]
 	path = lib/web-mode
 	url = https://github.com/fxbois/web-mode.git
