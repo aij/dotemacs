@@ -63,7 +63,7 @@
 	url = https://github.com/jacktasia/dumb-jump.git
 [submodule "elpa-admin"]
 	path = lib/elpa-admin
-	url = https://git.savannah.gnu.org/git/emacs/elpa.git
+	url = https://git.savannah.gnu.org/git/elpa/gnu.git
 [submodule "elx"]
 	path = lib/elx
 	url = https://github.com/emacscollective/elx
@@ -248,7 +248,7 @@
 	url = https://github.com/Fanael/rainbow-delimiters.git
 [submodule "rainbow-mode"]
 	path = lib/rainbow-mode
-	url = https://git.savannah.gnu.org/git/emacs/elpa.git
+	url = https://git.savannah.gnu.org/git/elpa/gnu.git
 [submodule "reformatter"]
 	path = lib/reformatter
 	url = https://github.com/purcell/reformatter.el.git

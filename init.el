@@ -56,10 +56,6 @@
   :functions (server-running-p)
   :config (or (server-running-p) (server-mode)))
 
-(progn ;     startup
-  (message "Loading early birds...done (%.3fs)"
-           (float-time (time-subtract (current-time) before-init-time))))
-
 ;;; Long tail
 
 (use-package autorevert
@@ -105,7 +101,9 @@
 
 (use-package ediff
   :defer t
-  :config (setq ediff-window-setup-function 'ediff-setup-windows-plain))
+  :config
+  (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+  (setq ediff-split-window-function 'split-window-horizontally))
 
 (use-package eldoc
   :config (global-eldoc-mode))
@@ -162,6 +160,9 @@
   (setq magit-log-margin '(t age magit-log-margin-width nil 15))
   (setq magit-refs-margin-for-tags t)
   ;;
+  ;; Diff settings (1/2)
+  (setq magit-diff-specify-hunk-foreground nil)
+  ;;
   ;; Disable safety nets
   :config
   (setq magit-commit-squash-confirm nil)
@@ -208,8 +209,10 @@
                           'magit-insert-modules
                           'append)
   ;;
-  ;; Diff buffer settings
+  ;; Diff settings (2/2)
   (setq magit-diff-refine-hunk 'all)
+  (setq magit-diff-fontify-hunk 'all)
+  (setq magit-diff-use-indicator-faces t)
   ;;
   ;; Revision buffer settings
   (setq magit-revision-show-gravatars t))
