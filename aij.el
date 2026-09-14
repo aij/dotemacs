@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (require 'package)
 (setq package-archives nil) ; makes unpure packages archives unavailable
 (package-initialize)
