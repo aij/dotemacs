@@ -88,8 +88,6 @@
   )
 
 (use-package psc-ide
-  :init
-  (require 'ccap-purescript)
   :config
   (add-hook 'purescript-mode-hook
     (lambda () ;; From https://github.com/epost/psc-ide-emacs
