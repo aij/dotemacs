@@ -100,7 +100,6 @@
 [submodule "git-modes"]
 	path = lib/git-modes
 	url = https://github.com/magit/git-modes.git
-	url = git@github.com:magit/git-modes.git
 #[submodule "git/ensime-emacs"]
 #	path = git/ensime-emacs
 #	#url = https://github.com/ensime/ensime-emacs
