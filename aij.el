@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (require 'package)
 (setq package-archives nil) ; makes unpure packages archives unavailable
 (package-initialize)
@@ -88,8 +89,6 @@
   )
 
 (use-package psc-ide
-  :init
-  (require 'ccap-purescript)
   :config
   (add-hook 'purescript-mode-hook
     (lambda () ;; From https://github.com/epost/psc-ide-emacs
